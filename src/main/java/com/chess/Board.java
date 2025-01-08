@@ -1,8 +1,8 @@
-package org.example;
+package com.chess;
 
-import org.example.models.Piece;
-import org.example.models.Square;
-import org.example.piece.*;
+import com.chess.models.Piece;
+import com.chess.models.Square;
+import com.chess.piece.*;
 
 public  class Board {
 

@@ -1,6 +1,6 @@
-package org.example;
+package com.chess;
 
-import org.example.models.GameOption;
+import com.chess.models.GameOption;
 
 public class Utils {
 

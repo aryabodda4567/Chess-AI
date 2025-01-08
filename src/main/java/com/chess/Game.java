@@ -1,8 +1,8 @@
-package org.example;
+package com.chess;
 
-import org.example.models.Color;
-import org.example.models.GameOption;
-import org.example.models.Square;
+import com.chess.models.Color;
+import com.chess.models.GameOption;
+import com.chess.models.Square;
 
 import java.util.Scanner;
 

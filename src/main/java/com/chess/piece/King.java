@@ -1,8 +1,8 @@
-package org.example.piece;
+package com.chess.piece;
 
-import org.example.models.Color;
-import org.example.models.Movements;
-import org.example.models.PieceModel;
+import com.chess.models.Color;
+import com.chess.models.Movements;
+import com.chess.models.PieceModel;
 
 public class King  extends PieceModel {
 

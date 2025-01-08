@@ -1,8 +1,11 @@
-package org.example.piece;
+package com.chess.piece;
 
-import org.example.models.*;
+import com.chess.models.Color;
+import com.chess.models.Movements;
+import com.chess.models.PieceModel;
 
-public class Pawn extends PieceModel  {
+
+public class Pawn extends PieceModel {
 
     public Pawn(int x, int y ) {
         super("Pawn", x, y,

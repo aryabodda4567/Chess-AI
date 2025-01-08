@@ -1,6 +1,6 @@
-package org.example.models;
+package com.chess.models;
 
-import org.example.piece.Empty;
+import com.chess.piece.Empty;
 
 public class PieceModel implements Piece {
     protected String name;

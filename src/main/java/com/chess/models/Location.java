@@ -1,4 +1,4 @@
-package org.example.models;
+package com.chess.models;
 
 public class Location {
     int x;

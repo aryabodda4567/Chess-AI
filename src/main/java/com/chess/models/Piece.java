@@ -1,4 +1,4 @@
-package org.example.models;
+package com.chess.models;
 
 public interface Piece {
     String getName();
