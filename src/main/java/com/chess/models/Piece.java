@@ -19,5 +19,9 @@ public interface Piece {
 
     public String display();
 
+    public void setColor(Color color);
+    public Color getColor();
+
+
 
 }

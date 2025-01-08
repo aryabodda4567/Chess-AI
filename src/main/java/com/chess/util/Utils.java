@@ -1,4 +1,4 @@
-package com.chess;
+package com.chess.util;
 
 import com.chess.models.GameOption;
 
@@ -41,5 +41,14 @@ public class Utils {
         System.out.println("Draw game.");
 
     }
+
+    public  static void printInvalidMove(String message){
+        System.out.println("Invalid move please place correct move \nMessage: " +message);
+    }
+    public  static void printInvalidMove(){
+        System.out.println("Invalid move please place correct move ");
+    }
+
+
 
 }

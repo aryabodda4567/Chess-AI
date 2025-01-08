@@ -44,7 +44,6 @@ public class Main {
 
     public static void main(String[] args) {
          init();
-         printBoard(board);
          Game game = new Game(board);
          game.startGame();
 

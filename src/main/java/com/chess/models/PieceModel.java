@@ -76,5 +76,15 @@ public class PieceModel implements Piece {
         return this.name + " " + this.color.toString() + " ";
     }
 
+    @Override
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    @Override
+    public Color getColor() {
+        return color;
+    }
+
 
 }

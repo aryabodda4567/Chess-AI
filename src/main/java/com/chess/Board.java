@@ -30,7 +30,7 @@ public  class Board {
 
     public static void printBoard(Square[][] board) {
         int size = 15;
-        int rows =7;
+        int rows =8;
         char[] cols = {'A','B','C','D','E','F','G','H'};
         for (int i = 0; i < 8; i++, rows--) {
             if(i==0) System.out.println("-".repeat((size + 5) * 8));

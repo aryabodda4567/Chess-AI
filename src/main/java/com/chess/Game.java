@@ -2,22 +2,30 @@ package com.chess;
 
 import com.chess.models.Color;
 import com.chess.models.GameOption;
+import com.chess.models.Location;
 import com.chess.models.Square;
+import com.chess.util.MoveParser;
+import com.chess.util.Utils;
 
 import java.util.Scanner;
 
 public class Game {
 
-    static  Square[][] board ;
-    static Color currentColor;
-    static String move;
-    static int status;
+    Square[][] board ;
+    Color currentColor;
+    String move;
+    int status;
+    boolean isWrongMove = false;
+    Location sourceLocation;
+    Location targetLocation;
+    Scanner scanner ;
 
 
 
     Game(Square[][] board){
         currentColor= Color.WHITE;
-        Game.board = board;
+        this.board = board;
+        scanner = new Scanner(System.in);
     }
 
 
@@ -26,20 +34,43 @@ public class Game {
     }
 
 
-    public  static  void menu(){
-        Scanner scanner = new Scanner(System.in);
-        Utils.clearScreen();
+    public void menu(){
+
+
         Board.printBoard(board);
+
+        //Check any wrong move in previous
+        if(isWrongMove){
+            Utils.printInvalidMove(currentColor+" is not a valid move");
+            isWrongMove = false;
+        }
+
+
         System.out.println("Move "+ currentColor);
         move = scanner.nextLine();
-        if(Game.validate()!=GameOption.MOVE) return;
+
+
+        //check EXIT Conditions
+        if(validate(move)!=GameOption.MOVE)  System.exit(0);
+
+        //Extract source and destination location from move
+        if(!extractLocation(move))  {
+             isWrongMove = true;
+             menu();
+        }
+
+
+
+
+        //Next run
         toggleColor();
+        Utils.clearScreen();
         menu();
     }
 
 
 
-     static GameOption validate(){
+      GameOption validate(String move){
         switch (move) {
             case "EXIT" -> {
                 System.out.println("Game exited by "+ currentColor);
@@ -59,6 +90,20 @@ public class Game {
         }
     }
 
+    boolean validateMove(){
+        return false;
+    }
+
+    boolean extractLocation(String move){
+        Location[]  locations =MoveParser.parseMove(move);
+        if(locations==null){
+            return false;
+        }
+
+        sourceLocation = locations[0];
+        targetLocation = locations[1];
+        return true;
+    }
 
 
 
@@ -67,25 +112,31 @@ public class Game {
 
 
 
-    public  static  void toggleColor(){
+
+
+
+
+
+
+    public  void toggleColor(){
         if(getCurrentColor().equals(Color.BLACK)) currentColor = Color.WHITE;
         else currentColor = Color.BLACK;
     }
 
 
-    public  static void setMove(String move) {
-        Game.move = move;
+    public   void setMove(String move) {
+        this.move = move;
     }
 
-    public static void setCurrentColor(Color currentColor) {
-        Game.currentColor = currentColor;
+    public  void setCurrentColor(Color currentColor) {
+        this.currentColor = currentColor;
     }
 
-    public  static Color getCurrentColor() {
+    public  Color getCurrentColor() {
         return currentColor;
     }
 
-    public static String getMove() {
+    public  String getMove() {
         return move;
     }
 }
