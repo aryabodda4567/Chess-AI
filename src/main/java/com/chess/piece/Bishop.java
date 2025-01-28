@@ -1,10 +1,11 @@
 package com.chess.piece;
 
+import com.chess.models.Board;
 import com.chess.models.Color;
 import com.chess.models.Movements;
-import com.chess.models.PieceModel;
+import com.chess.models.Piece;
 
-public class Bishop extends PieceModel {
+public class Bishop extends Piece {
 
     public Bishop(int x, int y) {
         super("Bishop", x, y,
@@ -15,6 +16,11 @@ public class Bishop extends PieceModel {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @Override
+    public void move(Board[][] board, Piece destination) {
+
     }
 
 }

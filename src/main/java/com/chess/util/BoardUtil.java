@@ -1,14 +1,15 @@
-package com.chess;
+package com.chess.util;
 
+import com.chess.models.Board;
 import com.chess.models.Piece;
-import com.chess.models.Square;
 import com.chess.piece.*;
 
-public  class Board {
+
+public  class BoardUtil {
 
 
 
-    public  static  Piece setPiece(int i, int j) {
+    public  static Piece setPiece(int i, int j) {
         Piece piece = null;
         if (i == 7 ||  i== 0) {
             piece = switch (j) {
@@ -28,7 +29,7 @@ public  class Board {
 
 
 
-    public static void printBoard(Square[][] board) {
+    public static void printBoard(Board[][] board) {
         int size = 15;
         int rows =8;
         char[] cols = {'A','B','C','D','E','F','G','H'};

@@ -1,10 +1,8 @@
 package com.chess.util;
-
 import com.chess.models.Location;
-
 import java.util.HashMap;
 
-public class MoveParser {
+public class MoveUtil {
 
     static HashMap<Character,Integer> colMap = new HashMap<>();
     static HashMap<Character,Integer> rowMap = new HashMap<>();
@@ -20,16 +18,20 @@ public class MoveParser {
     }
 
     static {
-        rowMap.put('1',0);
-        rowMap.put('2',1);
-        rowMap.put('3',2);
-        rowMap.put('4',3);
-        rowMap.put('5',4);
-        rowMap.put('6',5);
-        rowMap.put('7',6);
-        rowMap.put('8',7);
+        rowMap.put('1',7);
+        rowMap.put('2',6);
+        rowMap.put('3',5);
+        rowMap.put('4',4);
+        rowMap.put('5',3);
+        rowMap.put('6',2);
+        rowMap.put('7',1);
+        rowMap.put('8',0);
     }
 
+///
+///      Parses move and validates move coordinates implicitly
+///      null represents invalid move including invalid coordinates
+///
     public static  Location[] parseMove(String moves) {
         String[] move = moves.split(" ");
 
@@ -48,22 +50,18 @@ public class MoveParser {
         int destinationX =  rowMap.get(destination.charAt(1));
         Location destinationLocation = new Location(destinationX, destinationY);
 
+
         //Return location
         return new Location[]{sorceLocation, destinationLocation};
 
-
-
     }
 
-    public  static  boolean isValidMoveString(String[] move){
+    private   static  boolean isValidMoveString(String[] move){
 
         if(move.length != 2) return false;
 
         String source = move[0];
         String destination = move[1];
-
-        System.out.println(source.length());
-        System.out.println(destination.length());
 
         if(source.length() != 2) return false;
         if(destination.length() != 2) return false;
@@ -74,10 +72,11 @@ public class MoveParser {
         if(!colMap.containsKey(destination.charAt(0))) return false;
         if(!rowMap.containsKey(destination.charAt(1))) return false;
 
-
-
         return true;
 
 
     }
+
+
+
 }

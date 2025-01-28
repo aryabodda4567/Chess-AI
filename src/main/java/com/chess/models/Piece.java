@@ -1,27 +1,107 @@
 package com.chess.models;
 
-public interface Piece {
-    String getName();
+import com.chess.piece.Empty;
 
-    void setName(String name);
-
-    void setPosition(int x, int y);
-
-    Movements getMovement();
-
-    int getX();
-
-    void setX(int x);
-
-    int getY();
-
-    void setY(int y);
-
-    public String display();
-
-    public void setColor(Color color);
-    public Color getColor();
+public abstract class Piece {
+    protected String name;
+    protected Location currentLocation;
+    protected Movements movement;
+    protected Color color;
+    protected boolean isInitialMovement;
 
 
+
+    protected Piece(String name, int x, int y,
+                    Movements movement,
+                    Color color) {
+        this.name = name;
+        this.currentLocation = new Location(x, y);
+        this.movement = movement;
+        this.color = color;
+        this.isInitialMovement = true;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+     public void setName(String name) {
+        this.name = name;
+    }
+
+     public void setPosition(int x, int y) {
+        this.currentLocation.setX(x);
+        this.currentLocation.setY(y);
+    }
+
+     public Movements getMovement() {
+        return movement;
+    }
+
+     public int getX() {
+        return currentLocation.getX();
+    }
+
+     public void setX(int x) {
+        this.currentLocation.setX(x);
+    }
+
+
+    public int getY() {
+        return currentLocation.getY();
+    }
+
+     public void setY(int y) {
+        this.currentLocation.setY(y);
+    }
+
+     public String toString() {
+        return "PieceModel{" +
+                "name='" + name + '\'' +
+                ", currentLocation=" + currentLocation +
+                ", movement=" + movement +
+                ", color=" + color +
+                '}';
+    }
+
+
+     public String display() {
+        if(this instanceof Empty) return "";
+
+        return this.name + " " + this.color.toString() + " ";
+    }
+
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+     public Color getColor() {
+        return color;
+    }
+
+     public boolean isInitialMove() {
+        return false;
+    }
+
+
+    public Location getCurrentLocation() {
+        return currentLocation;
+    }
+
+    public void setCurrentLocation(Location currentLocation) {
+        this.currentLocation = currentLocation;
+    }
+
+    public void setMovement(Movements movement) {
+        this.movement = movement;
+    }
+
+    public boolean isInitialMovement() {
+        return isInitialMovement;
+    }
+
+  public  abstract void move(Board[][] board, Piece destination);
 
 }

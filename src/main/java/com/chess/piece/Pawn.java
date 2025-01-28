@@ -1,11 +1,12 @@
 package com.chess.piece;
 
+import com.chess.models.Board;
 import com.chess.models.Color;
 import com.chess.models.Movements;
-import com.chess.models.PieceModel;
+import com.chess.models.Piece;
 
 
-public class Pawn extends PieceModel {
+public class Pawn extends Piece {
 
     public Pawn(int x, int y ) {
         super("Pawn", x, y,
@@ -16,6 +17,11 @@ public class Pawn extends PieceModel {
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    @Override
+    public void move(Board[][] board, Piece destination) {
+
     }
 }
 
