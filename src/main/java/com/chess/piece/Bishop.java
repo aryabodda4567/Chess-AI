@@ -4,6 +4,7 @@ import com.chess.models.Board;
 import com.chess.models.Color;
 import com.chess.models.Movements;
 import com.chess.models.Piece;
+import com.chess.util.ErrorMessage;
 
 public class Bishop extends Piece {
 
@@ -19,7 +20,8 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public void move(Board[][] board, Piece destination) {
+    public ErrorMessage move(Board[][] board, Piece destination) {
+        return  null;
 
     }
 

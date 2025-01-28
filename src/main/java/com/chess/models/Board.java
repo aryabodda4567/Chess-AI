@@ -1,4 +1,7 @@
 package com.chess.models;
+
+import com.chess.piece.Empty;
+
 ///
 /// Board acts as chess board with 8X8 matrix
 ///
@@ -22,5 +25,13 @@ public class Board {
 
     public void setPiece(Piece piece) {
         this.piece = piece;
+    }
+
+    public static boolean isEmpty(Location location, Board[][] board) {
+        return isEmpty(location.getX(), location.getY(),board);
+    }
+
+    public  static boolean isEmpty(int x, int y, Board[][] board) {
+        return  board[x][y].getPiece() instanceof Empty;
     }
 }

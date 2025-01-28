@@ -1,6 +1,7 @@
 package com.chess;
 
 import com.chess.models.Board;
+import com.chess.models.Color;
 import com.chess.models.Location;
 import com.chess.models.Piece;
 import com.chess.piece.Empty;
@@ -18,6 +19,8 @@ public class Main {
 
     //White start from [0][0]
   static   Board[][]  board = new Board[8][8];
+  static Color currentColor = Color.WHITE;
+  static int moveCounter = 0;
 
 
 
@@ -57,13 +60,20 @@ public class Main {
          ErrorMessage errorMessage;
          String move;
          while (true){
+             System.out.print("Place "+ currentColor + " Move. ");
              move = scanner.nextLine();
              errorMessage =validateMove(move);
+
              if (errorMessage.isError()){
                 System.out.println(errorMessage.getMessage());
-                continue;
+
              }
-             System.out.println(move);
+             else {
+                 updateMove();
+             }
+
+
+
 
 
          }
@@ -77,7 +87,9 @@ public class Main {
 
 
         }
-
+///
+///     Method handles all error and return error object
+///
         private static ErrorMessage validateMove(String move){
 
 //        Get locations from user moves
@@ -86,6 +98,13 @@ public class Main {
                 return  new ErrorMessage(true,"Invalid Move or wrong source or destination locations ");
             }
 
+
+//            Check if the source or destination is empty
+            if(Board.isEmpty(locations[0],board)  ){
+                return  new ErrorMessage(true,"Empty source or destination locations ");
+            }
+
+
 //           Check whether the two pieces are of same color
             Piece sourcePiece = board[locations[0].getX()][locations[0].getY()].getPiece();
             Piece destinationPiece = board[locations[1].getX()][locations[1].getY()].getPiece();
@@ -93,14 +112,41 @@ public class Main {
                 return  new ErrorMessage(true,"You can't hit your piece");
             }
 
+//            Check valid color move
+            if(!sourcePiece.getColor().equals(currentColor)){
+                return  new ErrorMessage(true,sourcePiece.getColor()+" is not your piece");
+            }
 
-//
-            sourcePiece.move(board,destinationPiece);
+//            Check source and destination are same coordinates
+            if(locations[0].equals(locations[1])){
+                return  new ErrorMessage(true,"You can't hit your piece");
+            }
 
-
-
-
-
+            return sourcePiece.move(board,destinationPiece);
+//             return new ErrorMessage(false,null);
         }
+
+
+
+
+
+
+
+///
+///     Updates the move counter and toggles the color
+///
+        private static void updateMove(){
+//    Toggle color
+            if(currentColor==Color.BLACK){
+                currentColor = Color.WHITE;
+            }else{
+                currentColor = Color.BLACK;
+            }
+//            Update move counter
+            moveCounter++;
+        }
+
+
+
 
     }
