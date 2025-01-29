@@ -71,6 +71,7 @@ public class Main {
              else {
                  updateMove();
              }
+             BoardUtil.printBoard(board);
 
 
 
@@ -108,7 +109,7 @@ public class Main {
 //           Check whether the two pieces are of same color
             Piece sourcePiece = board[locations[0].getX()][locations[0].getY()].getPiece();
             Piece destinationPiece = board[locations[1].getX()][locations[1].getY()].getPiece();
-            if(PieceUtil.isSamePiece(sourcePiece,destinationPiece)){
+            if(PieceUtil.isSameColorPiece(sourcePiece,destinationPiece)){
                 return  new ErrorMessage(true,"You can't hit your piece");
             }
 

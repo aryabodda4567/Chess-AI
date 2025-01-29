@@ -1,6 +1,7 @@
 package com.chess.util;
 
 import com.chess.models.Board;
+import com.chess.models.Location;
 import com.chess.models.Piece;
 import com.chess.piece.*;
 
@@ -58,4 +59,30 @@ public  class BoardUtil {
         System.out.println();
 
     }
+
+    public  static  boolean isValidCoordinates(int x, int y) {
+        return x >= 0 && x < 8 && y >= 0 && y < 8;
+    }
+
+    public  static  boolean isValidCoordinates(Location location){
+        return  isValidCoordinates(location.getX(), location.getY());
+    }
+
+
+
+    public static void setPieces(Piece source, Piece destination,Board[][] board) {
+        int curX = source.getCurrentLocation().getX();
+        int curY = source.getCurrentLocation().getY();
+
+//           Remove current piece  from the source location
+        board[curX][curY].setPiece(new Empty(curX,curY));
+
+        int destX = destination.getCurrentLocation().getX();
+        int destY = destination.getCurrentLocation().getY();
+
+//        Set source piece at destination location
+        source.setCurrentLocation(destination.getCurrentLocation());
+        board[destX][destY].setPiece(source);
+    }
+
 }

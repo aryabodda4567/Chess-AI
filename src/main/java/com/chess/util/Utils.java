@@ -1,6 +1,9 @@
 package com.chess.util;
 
 import com.chess.models.GameOption;
+import com.chess.models.Location;
+
+import java.util.Set;
 
 public class Utils {
 
@@ -47,6 +50,13 @@ public class Utils {
     }
     public  static void printInvalidMove(){
         System.out.println("Invalid move please place correct move ");
+    }
+
+    public  static boolean isValidDestinationInValidLocations(Set<Location> locationSet, Location destinationLocation){
+        for (Location location : locationSet) {
+            if (location.equals(destinationLocation)) return true;
+        }
+        return false;
     }
 
 

@@ -33,6 +33,8 @@ public class MoveUtil {
 ///      null represents invalid move including invalid coordinates
 ///
     public static  Location[] parseMove(String moves) {
+
+        moves=moves.toUpperCase();
         String[] move = moves.split(" ");
 
         if(!isValidMoveString(move)) return null;
