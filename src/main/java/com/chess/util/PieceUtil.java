@@ -20,4 +20,11 @@ public class PieceUtil {
                 board[destX][destY].getPiece().getColor()
         );
     }
+    public  static boolean isAtVerticalEnd(Piece piece){
+        return piece.getCurrentLocation().getX() == 0 || piece.getCurrentLocation().getX() == 7;
+    }
+    public  static boolean isAtHorizontalEnd(Piece piece){
+        return piece.getCurrentLocation().getY() == 0 || piece.getCurrentLocation().getY() == 7;
+    }
 }
+

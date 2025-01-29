@@ -13,6 +13,10 @@ public class Rook  extends Piece {
                 (x==7)?Color.WHITE:Color.BLACK);
     }
 
+    public Rook(int x, int y, Color color) {
+        super("Rook",x,y,Movements.PLUS,color);
+    }
+
     @Override
     public String toString() {
         return super.toString();

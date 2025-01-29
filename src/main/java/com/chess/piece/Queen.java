@@ -13,6 +13,10 @@ public class Queen extends Piece {
                 (x==7)?Color.WHITE:Color.BLACK);
     }
 
+    public Queen(int x, int y, Color color) {
+        super("Queen",x,y,Movements.STAR,color);
+    }
+
     @Override
     public String toString() {
         return super.toString();

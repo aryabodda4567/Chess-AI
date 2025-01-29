@@ -13,6 +13,10 @@ public class Knight extends Piece {
                 (x==7)?Color.WHITE:Color.BLACK);
     }
 
+    public Knight(int x, int y, Color color) {
+          super("Knight",x,y,Movements.L,color);
+    }
+
     @Override
     public String toString() {
         return super.toString();

@@ -11,6 +11,7 @@ public class Empty extends Piece {
         super("Empty", x, y, Movements.NONE, Color.NONE);
     }
 
+
     @Override
     public String toString() {
         return super.toString();

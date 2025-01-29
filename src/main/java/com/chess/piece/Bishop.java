@@ -14,6 +14,10 @@ public class Bishop extends Piece {
                 (x==7)?Color.WHITE:Color.BLACK);
     }
 
+    public Bishop(int x, int y, Color color) {
+        super("Bishop",x,y,Movements.DIAGONAL,color);
+    }
+
     @Override
     public String toString() {
         return super.toString();
