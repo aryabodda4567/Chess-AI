@@ -8,13 +8,13 @@ import com.chess.util.ErrorMessage;
 
 public class Knight extends Piece {
 
-      public Knight(int x, int y) {
+    public Knight(int x, int y) {
         super("Knight", x, y, Movements.L,
-                (x==7)?Color.WHITE:Color.BLACK);
+                (x == 7) ? Color.WHITE : Color.BLACK);
     }
 
     public Knight(int x, int y, Color color) {
-          super("Knight",x,y,Movements.L,color);
+        super("Knight", x, y, Movements.L, color);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class Knight extends Piece {
 
     @Override
     public ErrorMessage move(Board[][] board, Piece destination) {
-        return  null;
+        return null;
 
     }
 }

@@ -1,7 +1,7 @@
 package com.chess.util;
 
 public class ErrorMessage {
-    boolean status ;
+    boolean status;
     String message;
 
     public ErrorMessage(boolean status, String message) {

@@ -10,11 +10,11 @@ public class Queen extends Piece {
     public Queen(int x, int y) {
         super("Queen", x, y,
                 Movements.STAR,
-                (x==7)?Color.WHITE:Color.BLACK);
+                (x == 7) ? Color.WHITE : Color.BLACK);
     }
 
     public Queen(int x, int y, Color color) {
-        super("Queen",x,y,Movements.STAR,color);
+        super("Queen", x, y, Movements.STAR, color);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class Queen extends Piece {
 
     @Override
     public ErrorMessage move(Board[][] board, Piece destination) {
-        return  null;
+        return null;
 
     }
 }

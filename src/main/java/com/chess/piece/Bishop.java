@@ -11,11 +11,11 @@ public class Bishop extends Piece {
     public Bishop(int x, int y) {
         super("Bishop", x, y,
                 Movements.DIAGONAL,
-                (x==7)?Color.WHITE:Color.BLACK);
+                (x == 7) ? Color.WHITE : Color.BLACK);
     }
 
     public Bishop(int x, int y, Color color) {
-        super("Bishop",x,y,Movements.DIAGONAL,color);
+        super("Bishop", x, y, Movements.DIAGONAL, color);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class Bishop extends Piece {
 
     @Override
     public ErrorMessage move(Board[][] board, Piece destination) {
-        return  null;
+        return null;
 
     }
 

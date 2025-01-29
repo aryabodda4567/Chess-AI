@@ -7,9 +7,9 @@ import java.util.Set;
 
 public class Utils {
 
-    public  static GameOption validateString(String gameOption){
+    public static GameOption validateString(String gameOption) {
 
-        if(gameOption==null || gameOption.isEmpty()){
+        if (gameOption == null || gameOption.isEmpty()) {
             return null;
         }
         return switch (gameOption) {
@@ -19,7 +19,38 @@ public class Utils {
             default -> GameOption.MOVE;
         };
     }
-    public void  displayInstructions(){
+
+    public static void clearScreen() {
+        for (int i = 0; i < 100; i++) // Default Height of cmd is 300 and Default width is 80
+            System.out.print("\n");
+    }
+
+    public static void exitGame() {
+        System.out.println("Game over.");
+
+    }
+
+    public static void drawGame() {
+        System.out.println("Draw game.");
+
+    }
+
+    public static void printInvalidMove(String message) {
+        System.out.println("Invalid move please place correct move \nMessage: " + message);
+    }
+
+    public static void printInvalidMove() {
+        System.out.println("Invalid move please place correct move ");
+    }
+
+    public static boolean isValidDestinationInValidLocations(Set<Location> locationSet, Location destinationLocation) {
+        for (Location location : locationSet) {
+            if (location.equals(destinationLocation)) return true;
+        }
+        return false;
+    }
+
+    public void displayInstructions() {
         System.out.println("1: Each cell contains the name and color of the piece.");
         System.out.println("2: Empty cells do not contain any pieces.");
         System.out.println("3: To move a piece, enter the source location and the destination location.");
@@ -28,37 +59,6 @@ public class Utils {
         System.out.println("5: To exit the game, type 'EXIT'.");
 
     }
-
-
-    public static void clearScreen() {
-        for(int i = 0; i < 100; i++) // Default Height of cmd is 300 and Default width is 80
-            System.out.print("\n");
-    }
-
-    public  static  void  exitGame(){
-        System.out.println("Game over.");
-
-    }
-
-    public static void   drawGame(){
-        System.out.println("Draw game.");
-
-    }
-
-    public  static void printInvalidMove(String message){
-        System.out.println("Invalid move please place correct move \nMessage: " +message);
-    }
-    public  static void printInvalidMove(){
-        System.out.println("Invalid move please place correct move ");
-    }
-
-    public  static boolean isValidDestinationInValidLocations(Set<Location> locationSet, Location destinationLocation){
-        for (Location location : locationSet) {
-            if (location.equals(destinationLocation)) return true;
-        }
-        return false;
-    }
-
 
 
 }
