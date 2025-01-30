@@ -1,10 +1,11 @@
 package com.chess.piece;
 
-import com.chess.models.Board;
-import com.chess.models.Color;
-import com.chess.models.Movements;
-import com.chess.models.Piece;
-import com.chess.util.ErrorMessage;
+import com.chess.models.*;
+import com.chess.util.*;
+
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 
 public class Queen extends Piece {
     public Queen(int x, int y) {
@@ -24,7 +25,31 @@ public class Queen extends Piece {
 
     @Override
     public ErrorMessage move(Board[][] board, Piece destination) {
-        return null;
+        Set<Location> possibleMoves = new HashSet<>();
+
+        int X = getX();
+        int Y = getY();
+        possibleMoves.addAll(MoveUtil.getDiagonalBottomRightMoves(X,Y,board,this));
+        possibleMoves.addAll(MoveUtil.getDiagonalTopRightMoves(X,Y,board,this));
+        possibleMoves.addAll(MoveUtil.getDiagonalBottomLeftMoves(X,Y,board,this));
+        possibleMoves.addAll(MoveUtil.getDiagonalTopLeftMoves(X,Y,board,this));
+
+        possibleMoves.addAll(MoveUtil.getHorizontalRightMoves(X,Y,board,this));
+        possibleMoves.addAll(MoveUtil.getHorizontalLeftMoves(X,Y,board,this));
+        possibleMoves.addAll(MoveUtil.getVerticalBottomMoves(X,Y,board,this));
+        possibleMoves.addAll(MoveUtil.getVerticalTopMoves(X,Y,board,this));
+
+        if(possibleMoves.isEmpty()){
+            return new ErrorMessage(true,"No possible moves found");
+        }
+
+        if(Utils.isValidDestinationInValidLocations(possibleMoves,destination.getCurrentLocation())){
+            BoardUtil.setPieces(this,destination,board);
+            return new ErrorMessage(false,null);
+        }else{
+            return new ErrorMessage(true,"Invalid move");
+        }
+
 
     }
 }
