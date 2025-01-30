@@ -1,10 +1,10 @@
 package com.chess.piece;
 
-import com.chess.models.Board;
-import com.chess.models.Color;
-import com.chess.models.Movements;
-import com.chess.models.Piece;
-import com.chess.util.ErrorMessage;
+import com.chess.models.*;
+import com.chess.util.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Bishop extends Piece {
 
@@ -25,7 +25,25 @@ public class Bishop extends Piece {
 
     @Override
     public ErrorMessage move(Board[][] board, Piece destination) {
-        return null;
+        Set<Location> possibleLocations = new HashSet<>();
+        int X = this.getX();
+        int Y = this.getY();
+        possibleLocations.addAll(MoveUtil.getDiagonalBottomRightMoves(X,Y,board,this));
+        possibleLocations.addAll(MoveUtil.getDiagonalTopRightMoves(X,Y,board,this));
+        possibleLocations.addAll(MoveUtil.getDiagonalBottomLeftMoves(X,Y,board,this));
+        possibleLocations.addAll(MoveUtil.getDiagonalTopLeftMoves(X,Y,board,this));
+
+
+        if(possibleLocations.isEmpty()) {
+            return new ErrorMessage(true, "No possible moves found");
+        }
+
+        if(Utils.isValidDestinationInValidLocations(possibleLocations,destination.getCurrentLocation())){
+            BoardUtil.setPieces(this,destination,board);
+            return new ErrorMessage(false,null);
+        }else {
+            return new ErrorMessage(true,"Invalid move");
+        }
 
     }
 

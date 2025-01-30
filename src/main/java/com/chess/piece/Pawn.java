@@ -42,7 +42,7 @@ public class Pawn extends Piece {
 
 //        No moves found
         if (possibleMoves.isEmpty()) {
-            return new ErrorMessage(true, "Now possible moves found");
+            return new ErrorMessage(true, "No possible moves found");
         }
 
 //        Valid move

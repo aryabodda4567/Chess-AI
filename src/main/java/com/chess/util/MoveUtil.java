@@ -152,4 +152,118 @@ public class MoveUtil {
     }
 
 
+
+    public static  Set<Location> getDiagonalTopLeftMoves(int X, int Y, Board[][] board, Piece source) {
+//        i-1,j-1
+        Set<Location> moves = new HashSet<>();
+
+        X= X-1;
+        Y = Y-1;
+        while (!PieceUtil.isDiagonalEnd(X, Y)) {
+            if(Board.isEmpty(X,Y,board)) {
+                moves.add(new Location(X,Y));
+                X--;
+                Y--;
+                continue;
+            }
+
+            if(source.getColor().equals(board[X][Y].getPiece().getColor())) {
+                break;
+            }
+            else{
+                moves.add(new Location(X,Y));
+            }
+            break;
+        }
+
+        for (Location location : moves) {
+            System.out.println(location);
+        }
+
+
+        return moves;
+    }
+
+
+
+
+    public static  Set<Location> getDiagonalTopRightMoves(int X, int Y, Board[][] board, Piece source) {
+//        i-1,j+1
+        Set<Location> moves = new HashSet<>();
+
+        X= X-1;
+        Y=Y+1;
+        while (!PieceUtil.isDiagonalEnd(X, Y)){
+            if(Board.isEmpty(X, Y, board)) {
+                moves.add(new Location(X, Y));
+                X--;
+                Y++;
+                continue;
+            }
+
+            if(source.getColor().equals(board[X][Y].getPiece().getColor())) {
+                break;
+            }
+            else
+                moves.add(new Location(X, Y));
+            break;
+
+        }
+
+
+
+        return moves;
+    }
+
+    public static Set<Location> getDiagonalBottomLeftMoves(int X, int Y, Board[][] board, Piece source) {
+//i+1,j-1
+        Set<Location> moves = new HashSet<>();
+
+        X = X+1;
+        Y = Y-1;
+        while (!PieceUtil.isDiagonalEnd(X, Y)){
+            if(Board.isEmpty(X, Y, board)) {
+                moves.add(new Location(X, Y));
+                X++;
+                Y--;
+                continue;
+            }
+            if(source.getColor().equals(board[X][Y].getPiece().getColor())) {
+                break;
+            }
+            else{
+                moves.add(new Location(X, Y));
+            }
+            break;
+        }
+
+        return moves;
+    }
+    public static Set<Location> getDiagonalBottomRightMoves(int X, int Y, Board[][] board, Piece source) {
+//i+1,j+1
+        Set<Location> moves = new HashSet<>();
+        X= X+1;
+        Y=Y+1;
+        while (!PieceUtil.isDiagonalEnd(X, Y)){
+            if(Board.isEmpty(X, Y, board)) {
+                moves.add(new Location(X, Y));
+                X++;
+                Y++;
+                continue;
+            }
+            if(source.getColor().equals(board[X][Y].getPiece().getColor())) {
+                break;
+            }
+            else{
+                moves.add(new Location(X, Y));
+            }
+            break;
+        }
+
+        return moves;
+    }
+
+
+
+
 }
