@@ -37,7 +37,7 @@ public class Pawn extends Piece {
 
         if (isInitialMovement) maxMoves = 2;
 
-        possibleMoves = getValidMoves(destination, board, maxMoves);
+        possibleMoves = getValidMoves( board, maxMoves);
 
 
 //        No moves found
@@ -86,7 +86,7 @@ public class Pawn extends Piece {
         };
     }
 
-    private Set<Location> getValidMoves(Piece destination, Board[][] board, int maxMoves) {
+    private Set<Location> getValidMoves( Board[][] board, int maxMoves) {
         Set<Location> possibleMoves = new HashSet<>();
 
         int change = (this.getColor().equals(Color.BLACK) ? 1 : -1);

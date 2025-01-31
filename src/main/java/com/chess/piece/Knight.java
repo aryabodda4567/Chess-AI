@@ -1,10 +1,13 @@
 package com.chess.piece;
 
-import com.chess.models.Board;
-import com.chess.models.Color;
-import com.chess.models.Movements;
-import com.chess.models.Piece;
+import com.chess.models.*;
+import com.chess.util.BoardUtil;
 import com.chess.util.ErrorMessage;
+import com.chess.util.PieceUtil;
+import com.chess.util.Utils;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Knight extends Piece {
 
@@ -24,7 +27,60 @@ public class Knight extends Piece {
 
     @Override
     public ErrorMessage move(Board[][] board, Piece destination) {
-        return null;
+        Set<Location> possibleLocations;
+
+        possibleLocations = getValidMoves(board, destination);
+        if (possibleLocations.isEmpty()) {
+            return new ErrorMessage(true, "No valid moves found");
+        }
+
+        if (Utils.isValidDestinationInValidLocations(possibleLocations, destination.getCurrentLocation())) {
+            BoardUtil.setPieces(this, destination, board);
+            return new ErrorMessage(false, null);
+        } else {
+            return new ErrorMessage(true, "Invalid move");
+        }
+
+    }
+
+
+/// ALERT: This method only check valid positions and add all locations which can be accessed from the knight location
+/// irrespective of the piece present at square
+/// Use 'PieceUtil.isSameColorPiece()' method before calling this method
+    public Set<Location> getValidMoves(Board[][] board, Piece destination) {
+        Set<Location> validMoves = new HashSet<>();
+//        validMoves.add(new Location(X+i, Y+j));
+//        validMoves.add(new Location(X-i, Y-j));
+//        validMoves.add(new Location(X+i, Y-j));
+//        validMoves.add(new Location(X-i, Y+j));
+
+        int X = this.getX();
+        int Y = this.getY();
+
+
+
+        for (int i = 1, j = 2; i <= 2 && j >= 1; i++, j--) {
+
+            if(BoardUtil.isValidCoordinates(X+i, Y+j)){
+                validMoves.add(new Location(X + i, Y + j));
+            }
+
+            if(BoardUtil.isValidCoordinates(X-i, Y-j)){
+                validMoves.add(new Location(X-i, Y-j));
+            }
+
+            if(BoardUtil.isValidCoordinates(X+i, Y-j)){
+                validMoves.add(new Location(X+i, Y-j));
+            }
+
+            if(BoardUtil.isValidCoordinates(X-i, Y+j)){
+                validMoves.add(new Location(X-i, Y+j));
+            }
+
+        }
+
+        return validMoves;
+
 
     }
 }
