@@ -1,10 +1,12 @@
 package com.chess.piece;
 
 import com.chess.models.*;
-import com.chess.util.*;
+import com.chess.util.BoardUtil;
+import com.chess.util.ErrorMessage;
+import com.chess.util.MoveUtil;
+import com.chess.util.Utils;
 
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.Set;
 
 public class Queen extends Piece {
@@ -29,25 +31,25 @@ public class Queen extends Piece {
 
         int X = getX();
         int Y = getY();
-        possibleMoves.addAll(MoveUtil.getDiagonalBottomRightMoves(X,Y,board,this));
-        possibleMoves.addAll(MoveUtil.getDiagonalTopRightMoves(X,Y,board,this));
-        possibleMoves.addAll(MoveUtil.getDiagonalBottomLeftMoves(X,Y,board,this));
-        possibleMoves.addAll(MoveUtil.getDiagonalTopLeftMoves(X,Y,board,this));
+        possibleMoves.addAll(MoveUtil.getDiagonalBottomRightMoves(X, Y, board, this));
+        possibleMoves.addAll(MoveUtil.getDiagonalTopRightMoves(X, Y, board, this));
+        possibleMoves.addAll(MoveUtil.getDiagonalBottomLeftMoves(X, Y, board, this));
+        possibleMoves.addAll(MoveUtil.getDiagonalTopLeftMoves(X, Y, board, this));
 
-        possibleMoves.addAll(MoveUtil.getHorizontalRightMoves(X,Y,board,this));
-        possibleMoves.addAll(MoveUtil.getHorizontalLeftMoves(X,Y,board,this));
-        possibleMoves.addAll(MoveUtil.getVerticalBottomMoves(X,Y,board,this));
-        possibleMoves.addAll(MoveUtil.getVerticalTopMoves(X,Y,board,this));
+        possibleMoves.addAll(MoveUtil.getHorizontalRightMoves(X, Y, board, this));
+        possibleMoves.addAll(MoveUtil.getHorizontalLeftMoves(X, Y, board, this));
+        possibleMoves.addAll(MoveUtil.getVerticalBottomMoves(X, Y, board, this));
+        possibleMoves.addAll(MoveUtil.getVerticalTopMoves(X, Y, board, this));
 
-        if(possibleMoves.isEmpty()){
-            return new ErrorMessage(true,"No possible moves found");
+        if (possibleMoves.isEmpty()) {
+            return new ErrorMessage(true, "No possible moves found");
         }
 
-        if(Utils.isValidDestinationInValidLocations(possibleMoves,destination.getCurrentLocation())){
-            BoardUtil.setPieces(this,destination,board);
-            return new ErrorMessage(false,null);
-        }else{
-            return new ErrorMessage(true,"Invalid move");
+        if (Utils.isValidDestinationInValidLocations(possibleMoves, destination.getCurrentLocation())) {
+            BoardUtil.setPieces(this, destination, board);
+            return new ErrorMessage(false, null);
+        } else {
+            return new ErrorMessage(true, "Invalid move");
         }
 
 

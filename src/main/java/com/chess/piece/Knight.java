@@ -3,7 +3,6 @@ package com.chess.piece;
 import com.chess.models.*;
 import com.chess.util.BoardUtil;
 import com.chess.util.ErrorMessage;
-import com.chess.util.PieceUtil;
 import com.chess.util.Utils;
 
 import java.util.HashSet;
@@ -44,9 +43,9 @@ public class Knight extends Piece {
     }
 
 
-/// ALERT: This method only check valid positions and add all locations which can be accessed from the knight location
-/// irrespective of the piece present at square
-/// Use 'PieceUtil.isSameColorPiece()' method before calling this method
+    /// ALERT: This method only check valid positions and add all locations which can be accessed from the knight location
+    /// irrespective of the piece present at square
+    /// Use 'PieceUtil.isSameColorPiece()' method before calling this method
     public Set<Location> getValidMoves(Board[][] board, Piece destination) {
         Set<Location> validMoves = new HashSet<>();
 //        validMoves.add(new Location(X+i, Y+j));
@@ -58,23 +57,22 @@ public class Knight extends Piece {
         int Y = this.getY();
 
 
-
         for (int i = 1, j = 2; i <= 2 && j >= 1; i++, j--) {
 
-            if(BoardUtil.isValidCoordinates(X+i, Y+j)){
+            if (BoardUtil.isValidCoordinates(X + i, Y + j)) {
                 validMoves.add(new Location(X + i, Y + j));
             }
 
-            if(BoardUtil.isValidCoordinates(X-i, Y-j)){
-                validMoves.add(new Location(X-i, Y-j));
+            if (BoardUtil.isValidCoordinates(X - i, Y - j)) {
+                validMoves.add(new Location(X - i, Y - j));
             }
 
-            if(BoardUtil.isValidCoordinates(X+i, Y-j)){
-                validMoves.add(new Location(X+i, Y-j));
+            if (BoardUtil.isValidCoordinates(X + i, Y - j)) {
+                validMoves.add(new Location(X + i, Y - j));
             }
 
-            if(BoardUtil.isValidCoordinates(X-i, Y+j)){
-                validMoves.add(new Location(X-i, Y+j));
+            if (BoardUtil.isValidCoordinates(X - i, Y + j)) {
+                validMoves.add(new Location(X - i, Y + j));
             }
 
         }

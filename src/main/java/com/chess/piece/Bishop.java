@@ -1,7 +1,10 @@
 package com.chess.piece;
 
 import com.chess.models.*;
-import com.chess.util.*;
+import com.chess.util.BoardUtil;
+import com.chess.util.ErrorMessage;
+import com.chess.util.MoveUtil;
+import com.chess.util.Utils;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,21 +31,21 @@ public class Bishop extends Piece {
         Set<Location> possibleLocations = new HashSet<>();
         int X = this.getX();
         int Y = this.getY();
-        possibleLocations.addAll(MoveUtil.getDiagonalBottomRightMoves(X,Y,board,this));
-        possibleLocations.addAll(MoveUtil.getDiagonalTopRightMoves(X,Y,board,this));
-        possibleLocations.addAll(MoveUtil.getDiagonalBottomLeftMoves(X,Y,board,this));
-        possibleLocations.addAll(MoveUtil.getDiagonalTopLeftMoves(X,Y,board,this));
+        possibleLocations.addAll(MoveUtil.getDiagonalBottomRightMoves(X, Y, board, this));
+        possibleLocations.addAll(MoveUtil.getDiagonalTopRightMoves(X, Y, board, this));
+        possibleLocations.addAll(MoveUtil.getDiagonalBottomLeftMoves(X, Y, board, this));
+        possibleLocations.addAll(MoveUtil.getDiagonalTopLeftMoves(X, Y, board, this));
 
 
-        if(possibleLocations.isEmpty()) {
+        if (possibleLocations.isEmpty()) {
             return new ErrorMessage(true, "No possible moves found");
         }
 
-        if(Utils.isValidDestinationInValidLocations(possibleLocations,destination.getCurrentLocation())){
-            BoardUtil.setPieces(this,destination,board);
-            return new ErrorMessage(false,null);
-        }else {
-            return new ErrorMessage(true,"Invalid move");
+        if (Utils.isValidDestinationInValidLocations(possibleLocations, destination.getCurrentLocation())) {
+            BoardUtil.setPieces(this, destination, board);
+            return new ErrorMessage(false, null);
+        } else {
+            return new ErrorMessage(true, "Invalid move");
         }
 
     }

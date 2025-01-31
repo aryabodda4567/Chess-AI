@@ -24,19 +24,18 @@ public class King extends Piece {
 
     @Override
     public ErrorMessage move(Board[][] board, Piece destination) {
-        Set<Location> validMoves ;
+        Set<Location> validMoves;
         validMoves = getValidMoves(board);
 
-        if(validMoves.isEmpty()){
+        if (validMoves.isEmpty()) {
             return new ErrorMessage(true, "No valid moves found");
         }
 
-        if(Utils.isValidDestinationInValidLocations(validMoves,destination.getCurrentLocation())){
-            BoardUtil.setPieces(this,destination,board);
+        if (Utils.isValidDestinationInValidLocations(validMoves, destination.getCurrentLocation())) {
+            BoardUtil.setPieces(this, destination, board);
             return new ErrorMessage(false, null);
 
-        }
-        else{
+        } else {
             return new ErrorMessage(true, "Invalid move");
 
         }
@@ -44,7 +43,7 @@ public class King extends Piece {
 
     }
 
-    private  Set<Location> getValidMoves(Board[][] board) {
+    private Set<Location> getValidMoves(Board[][] board) {
         Set<Location> validMoves = new HashSet<>();
 
         int X = getX();
@@ -53,99 +52,96 @@ public class King extends Piece {
         int newX, newY;
 
 
-        newX = X -1;
-        newY = Y ;
-        if(BoardUtil.isValidCoordinates(newX, newY)) {
-            if(Board.isEmpty(newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
-            } else if(!PieceUtil.isSameColorPiece(X,Y,newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
+        newX = X - 1;
+        newY = Y;
+        if (BoardUtil.isValidCoordinates(newX, newY)) {
+            if (Board.isEmpty(newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
+            } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
             }
         }
 
 
-        newX = X -1;
-        newY = Y-1 ;
-        if(BoardUtil.isValidCoordinates(newX, newY)) {
-            if(Board.isEmpty(newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
-            } else if(!PieceUtil.isSameColorPiece(X,Y,newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
+        newX = X - 1;
+        newY = Y - 1;
+        if (BoardUtil.isValidCoordinates(newX, newY)) {
+            if (Board.isEmpty(newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
+            } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
             }
         }
 
 
-        newX = X -1;
-        newY = Y +1;
-        if(BoardUtil.isValidCoordinates(newX, newY)) {
-            if(Board.isEmpty(newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
-            } else if(!PieceUtil.isSameColorPiece(X,Y,newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
+        newX = X - 1;
+        newY = Y + 1;
+        if (BoardUtil.isValidCoordinates(newX, newY)) {
+            if (Board.isEmpty(newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
+            } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
             }
         }
 
 
-        newX = X +1;
-        newY = Y ;
-        if(BoardUtil.isValidCoordinates(newX, newY)) {
-            if(Board.isEmpty(newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
-            } else if(!PieceUtil.isSameColorPiece(X,Y,newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
+        newX = X + 1;
+        newY = Y;
+        if (BoardUtil.isValidCoordinates(newX, newY)) {
+            if (Board.isEmpty(newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
+            } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
             }
         }
 
 
-
-        newX = X +1;
-        newY = Y+1 ;
-        if(BoardUtil.isValidCoordinates(newX, newY)) {
-            if(Board.isEmpty(newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
-            } else if(!PieceUtil.isSameColorPiece(X,Y,newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
+        newX = X + 1;
+        newY = Y + 1;
+        if (BoardUtil.isValidCoordinates(newX, newY)) {
+            if (Board.isEmpty(newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
+            } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
             }
         }
 
 
-        newX = X +1;
-        newY = Y-1 ;
-        if(BoardUtil.isValidCoordinates(newX, newY)) {
-            if(Board.isEmpty(newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
-            } else if(!PieceUtil.isSameColorPiece(X,Y,newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
+        newX = X + 1;
+        newY = Y - 1;
+        if (BoardUtil.isValidCoordinates(newX, newY)) {
+            if (Board.isEmpty(newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
+            } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
             }
         }
 
 
-        newX = X ;
-        newY = Y +1;
-        if(BoardUtil.isValidCoordinates(newX, newY)) {
-            if(Board.isEmpty(newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
-            } else if(!PieceUtil.isSameColorPiece(X,Y,newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
+        newX = X;
+        newY = Y + 1;
+        if (BoardUtil.isValidCoordinates(newX, newY)) {
+            if (Board.isEmpty(newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
+            } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
             }
         }
 
-        newX = X ;
-        newY = Y -1;
-        if(BoardUtil.isValidCoordinates(newX, newY)) {
-            if(Board.isEmpty(newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
-            } else if(!PieceUtil.isSameColorPiece(X,Y,newX,newY,board)) {
-                validMoves.add(new Location(newX,newY));
+        newX = X;
+        newY = Y - 1;
+        if (BoardUtil.isValidCoordinates(newX, newY)) {
+            if (Board.isEmpty(newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
+            } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
+                validMoves.add(new Location(newX, newY));
             }
         }
 
-        for(Location location : validMoves) {
+        for (Location location : validMoves) {
             System.out.println(location);
         }
         return validMoves;
-
-        
 
 
     }

@@ -29,7 +29,7 @@ public class PieceUtil {
         return piece.getCurrentLocation().getY() == 0 || piece.getCurrentLocation().getY() == 7;
     }
 
-    public static boolean  isDiagonalEnd(int X, int Y) {
+    public static boolean isDiagonalEnd(int X, int Y) {
         return X < 0 || X > 7 || Y < 0 || Y > 7;
     }
 
