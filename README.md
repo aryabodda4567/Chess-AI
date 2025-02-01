@@ -15,7 +15,7 @@ This is a Java-based chess game that allows players to play against an AI oppone
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/aryabodda4567/Chess.git
+    git clone https://github.com/aryabodda4567/Chess-AI.git 
     ```
 
  
