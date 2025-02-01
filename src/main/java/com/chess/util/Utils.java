@@ -1,10 +1,11 @@
 package com.chess.util;
 
-import com.chess.models.Board;
-import com.chess.models.GameOption;
-import com.chess.models.Location;
+import com.chess.models.*;
+import com.chess.piece.Empty;
 
 import java.util.Set;
+
+import static com.chess.util.BoardUtil.setPiece;
 
 public class Utils {
 
@@ -54,6 +55,80 @@ public class Utils {
         System.out.println("   - Format: For example, 'c1 c5' means moving the piece from c1 to c5.");
         System.out.println("4: To declare a draw, type 'DRAW'.");
         System.out.println("5: To exit the game, type 'EXIT'.");
+
+    }
+
+    public static void init(Board[][] board) {
+        // Assign white
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < 8; j++) {
+                board[i][j] = new Board(i, j, setPiece(i, j));
+            }
+        }
+        // Assign Black
+        for (int i = 7; i >= 6; i--) {
+            for (int j = 0; j < 8; j++) {
+                board[i][j] = new Board(i, j, setPiece(i, j));
+            }
+        }
+        // Assign Empty
+        for (int i = 2; i < 6; i++) {
+            for (int j = 0; j < 8; j++) {
+                board[i][j] = new Board(i, j, new Empty(i, j));
+            }
+        }
+    }
+    ///     Method handles all error and return error object
+    public static Message validateMove(String move, Board[][] board, Color currentColor) {
+
+//        Check the move is game option
+        if(MoveUtil.isGameOptions(move)){
+            return new Message(true);
+        }
+
+//        Get locations from user moves
+        Location[] locations = MoveUtil.parseMove(move);
+        if (locations == null) {
+            return new Message(true, "Invalid Move or wrong source or destination locations ");
+        }
+
+
+//            Check if the source or destination is empty
+        if (Board.isEmpty(locations[0], board)) {
+            return new Message(true, "Empty source or destination locations ");
+        }
+
+
+//           Check whether the two pieces are of same color
+        Piece sourcePiece = board[locations[0].getX()][locations[0].getY()].getPiece();
+        Piece destinationPiece = board[locations[1].getX()][locations[1].getY()].getPiece();
+        if (PieceUtil.isSameColorPiece(sourcePiece, destinationPiece)) {
+            return new Message(true, "You can't hit your piece");
+        }
+
+//            Check valid color move
+        if (!sourcePiece.getColor().equals(currentColor)) {
+            return new Message(true, sourcePiece.getColor() + " is not your piece");
+        }
+
+//            Check source and destination are same coordinates
+        if (locations[0].equals(locations[1])) {
+            return new Message(true, "You can't hit your piece");
+        }
+
+
+        return sourcePiece.move(board, destinationPiece);
+//             return new ErrorMessage(false,null);
+    }
+
+///  Toggle the color
+    public static Color updateMove(Color currentColor) {
+//    Toggle color
+        if (currentColor == Color.BLACK) {
+            return Color.WHITE;
+        } else {
+           return Color.BLACK;
+        }
 
     }
 

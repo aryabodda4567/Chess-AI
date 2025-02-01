@@ -2,7 +2,7 @@ package com.chess.piece;
 
 import com.chess.models.*;
 import com.chess.util.BoardUtil;
-import com.chess.util.ErrorMessage;
+import com.chess.util.Message;
 import com.chess.util.Utils;
 
 import java.util.HashSet;
@@ -25,19 +25,19 @@ public class Knight extends Piece {
     }
 
     @Override
-    public ErrorMessage move(Board[][] board, Piece destination) {
+    public Message move(Board[][] board, Piece destination) {
         Set<Location> possibleLocations;
 
         possibleLocations = getValidMoves(board, destination);
         if (possibleLocations.isEmpty()) {
-            return new ErrorMessage(true, "No valid moves found");
+            return new Message(true, "No valid moves found");
         }
 
         if (Utils.isValidDestinationInValidLocations(possibleLocations, destination.getCurrentLocation())) {
             BoardUtil.setPieces(this, destination, board);
-            return new ErrorMessage(false, null);
+            return new Message(false, null);
         } else {
-            return new ErrorMessage(true, "Invalid move");
+            return new Message(true, "Invalid move");
         }
 
     }

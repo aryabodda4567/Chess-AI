@@ -2,7 +2,7 @@ package com.chess.piece;
 
 import com.chess.models.*;
 import com.chess.util.BoardUtil;
-import com.chess.util.ErrorMessage;
+import com.chess.util.Message;
 import com.chess.util.PieceUtil;
 import com.chess.util.Utils;
 
@@ -28,7 +28,7 @@ public class Pawn extends Piece {
 
 
     @Override
-    public ErrorMessage move(Board[][] board, Piece destination) {
+    public Message move(Board[][] board, Piece destination) {
         Location destLocation = destination.getCurrentLocation();
 
 
@@ -42,7 +42,7 @@ public class Pawn extends Piece {
 
 //        No moves found
         if (possibleMoves.isEmpty()) {
-            return new ErrorMessage(true, "No possible moves found");
+            return new Message(true, "No possible moves found");
         }
 
 //        Valid move
@@ -58,9 +58,9 @@ public class Pawn extends Piece {
                 promote(board);
             }
 
-            return new ErrorMessage(false, null);
+            return new Message(false, null);
         } else {
-            return new ErrorMessage(true, "Not a valid move");
+            return new Message(true, "Not a valid move");
         }
 
 

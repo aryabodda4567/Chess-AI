@@ -1,7 +1,7 @@
 package com.chess.models;
 
 import com.chess.piece.Empty;
-import com.chess.util.ErrorMessage;
+import com.chess.util.Message;
 
 public abstract class Piece {
     protected String name;
@@ -98,6 +98,6 @@ public abstract class Piece {
         return isInitialMovement;
     }
 
-    public abstract ErrorMessage move(Board[][] board, Piece destination);
+    public abstract Message move(Board[][] board, Piece destination);
 
 }

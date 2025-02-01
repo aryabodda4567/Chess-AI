@@ -1,12 +1,17 @@
 package com.chess.util;
 
-public class ErrorMessage {
+public class Message {
     boolean status;
     String message;
+    boolean exit ;
 
-    public ErrorMessage(boolean status, String message) {
+    public Message(boolean status, String message) {
         this.status = status;
         this.message = message;
+    }
+
+    public Message(boolean exit) {
+        this.exit = exit;
     }
 
     public String getMessage() {
@@ -23,5 +28,8 @@ public class ErrorMessage {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+    public boolean isExit() {
+        return exit;
     }
 }

@@ -2,7 +2,7 @@ package com.chess.piece;
 
 import com.chess.models.*;
 import com.chess.util.BoardUtil;
-import com.chess.util.ErrorMessage;
+import com.chess.util.Message;
 import com.chess.util.MoveUtil;
 import com.chess.util.Utils;
 
@@ -26,7 +26,7 @@ public class Rook extends Piece {
     }
 
     @Override
-    public ErrorMessage move(Board[][] board, Piece destination) {
+    public Message move(Board[][] board, Piece destination) {
         Set<Location> possibleMoves = new HashSet<>();
         int X, Y;
         X = this.getX();
@@ -39,14 +39,14 @@ public class Rook extends Piece {
 
 
         if (possibleMoves.isEmpty()) {
-            return new ErrorMessage(true, "No possible moves found");
+            return new Message(true, "No possible moves found");
         }
 
         if (Utils.isValidDestinationInValidLocations(possibleMoves, destination.getCurrentLocation())) {
             BoardUtil.setPieces(this, destination, board);
-            return new ErrorMessage(false, null);
+            return new Message(false, null);
         } else {
-            return new ErrorMessage(true, "Invalid move");
+            return new Message(true, "Invalid move");
         }
     }
 

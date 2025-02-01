@@ -4,7 +4,7 @@ import com.chess.models.Board;
 import com.chess.models.Color;
 import com.chess.models.Movements;
 import com.chess.models.Piece;
-import com.chess.util.ErrorMessage;
+import com.chess.util.Message;
 
 public class Empty extends Piece {
     public Empty(int x, int y) {
@@ -18,7 +18,7 @@ public class Empty extends Piece {
     }
 
     @Override
-    public ErrorMessage move(Board[][] board, Piece destination) {
+    public Message move(Board[][] board, Piece destination) {
         return null;
 
     }
