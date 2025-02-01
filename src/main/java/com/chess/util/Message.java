@@ -1,18 +1,23 @@
 package com.chess.util;
 
+import com.chess.models.GameOption;
+
 public class Message {
     boolean status;
     String message;
-    boolean exit ;
+
+    GameOption gameOption;
 
     public Message(boolean status, String message) {
         this.status = status;
         this.message = message;
     }
 
-    public Message(boolean exit) {
-        this.exit = exit;
-    }
+     public Message(GameOption gameOption) {
+        this.gameOption = gameOption;
+     }
+
+
 
     public String getMessage() {
         return message;
@@ -29,7 +34,8 @@ public class Message {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    public boolean isExit() {
-        return exit;
+
+    public GameOption getGameOption() {
+        return gameOption;
     }
 }

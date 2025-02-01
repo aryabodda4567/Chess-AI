@@ -81,10 +81,10 @@ public class Utils {
     ///     Method handles all error and return error object
     public static Message validateMove(String move, Board[][] board, Color currentColor) {
 
-//        Check the move is game option
-        if(MoveUtil.isGameOptions(move)){
-            return new Message(true);
-        }
+//        Validate
+        if(move.trim().isEmpty()) return  new Message(true,"No move entered.");
+
+
 
 //        Get locations from user moves
         Location[] locations = MoveUtil.parseMove(move);

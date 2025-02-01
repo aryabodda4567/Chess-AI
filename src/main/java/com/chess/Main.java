@@ -1,8 +1,10 @@
 package com.chess;
 
+import com.chess.ai.bridge.Chat;
 import com.chess.ai.utils.Parser;
 import com.chess.models.Board;
 import com.chess.models.Color;
+import com.chess.models.GameOption;
 import com.chess.util.*;
 
 import java.util.Scanner;
@@ -22,23 +24,47 @@ public class Main {
     public static void main(String[] args) {
 
 
-
         Scanner scanner = new Scanner(System.in);
         Utils.init(board);
-        Parser.parseBoardToString(board);
+//        System.out.println(Chat.getMove(Parser.parseBoardToString(board),currentColor.toString()));
         BoardUtil.printBoard(board);
-        Message message;
-        String move;
+
+
         while (true) {
             System.out.print("Place " + currentColor + " Move. ");
-            move = scanner.nextLine();
-            message = Utils.validateMove(move,board,currentColor);
+            String move =  Chat.getMove(Parser.parseBoardToString(board),currentColor.toString());
+            System.out.println(move);
+//            String move = scanner.nextLine();
 
-//            Check exit
-            if(message.isExit()){
-                break;
+
+//            Check move contains game option;
+
+            assert move != null;
+            if(MoveUtil.isGameOptions(move)) {
+//                Get the game options
+                GameOption gameOption = GameOption.getGameOption(move);
+
+                if(gameOption != null) {
+                     if(gameOption.equals(GameOption.EXIT)){
+                         System.out.println("Exiting...");
+                         break;
+                     }else if (gameOption.equals(GameOption.DRAW)){
+                         System.out.println("Draw...");
+                         break;
+                     }else if (gameOption.equals(GameOption.LOSE)){
+                         System.out.println("Lose...");
+                         break;
+                     } else if (gameOption.equals(GameOption.CHECKMATE)) {
+                         System.out.println("Checkmate...");
+                         break;
+                     } else if (gameOption.equals(GameOption.CHECK)) {
+                         System.out.println("Check...");
+                         move = move.toUpperCase();
+                         move= move.replace(GameOption.CHECK.toString(), "" );
+                     }
+                }
             }
-
+            Message message = Utils.validateMove(move,board,currentColor);
 //          Check move errors
             if (message.isError()) {
                 System.out.println(message.getMessage());

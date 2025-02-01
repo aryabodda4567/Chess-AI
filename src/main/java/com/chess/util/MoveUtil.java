@@ -85,31 +85,14 @@ public class MoveUtil {
 
     }
 
-    /// Return true for exit
+    /// Return true for the move containing game option
     public static boolean isGameOptions(String move) {
-        move=move.toUpperCase();
-        if(move.equals(GameOption.EXIT.toString())){
-                Utils.exitGame();
-                return true;
-        }
-        if(move.equals(GameOption.DRAW.toString())){
-            Utils.drawGame();
-            return true;
-        }
-        if(move.equals(GameOption.LOSE.toString()) ){
-            Utils.exitGame();
-            return true;
-        }
-        if(move.equals(GameOption.CHECK.toString())){
-            Utils.check();
-            return false;
-        }
-        if(move.equals(GameOption.CHECKMATE.toString())){
-            Utils.checkmate();
-            return true;
-        }
+//        Check move contains game options
+        if( Character.isAlphabetic(move.trim().charAt(move.trim().length() - 1))) return true;
 
-        return false;
+        if(move.toUpperCase().contains(GameOption.EXIT.toString())) return true;
+
+        return move.toUpperCase().contains(GameOption.DRAW.toString());
 
     }
 
@@ -284,6 +267,8 @@ public class MoveUtil {
 
         return moves;
     }
+
+
 
 
 }
