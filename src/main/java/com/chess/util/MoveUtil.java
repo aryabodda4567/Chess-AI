@@ -88,9 +88,9 @@ public class MoveUtil {
     /// Return true for the move containing game option
     public static boolean isGameOptions(String move) {
 //        Check move contains game options
-        if( Character.isAlphabetic(move.trim().charAt(move.trim().length() - 1))) return true;
+        if (Character.isAlphabetic(move.trim().charAt(move.trim().length() - 1))) return true;
 
-        if(move.toUpperCase().contains(GameOption.EXIT.toString())) return true;
+        if (move.toUpperCase().contains(GameOption.EXIT.toString())) return true;
 
         return move.toUpperCase().contains(GameOption.DRAW.toString());
 
@@ -267,8 +267,6 @@ public class MoveUtil {
 
         return moves;
     }
-
-
 
 
 }

@@ -3,17 +3,15 @@ package com.chess.ai.utils;
 import com.chess.models.Board;
 import com.chess.models.Color;
 import com.chess.piece.Empty;
-import netscape.javascript.JSObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
 
-
-
 public class Parser {
-  private static final   Map<Integer,Character> colMap = new HashMap<>();
-   private static  final Map<Integer,Character> rowMap = new HashMap<>();
+    private static final Map<Integer, Character> colMap = new HashMap<>();
+    private static final Map<Integer, Character> rowMap = new HashMap<>();
+
     static {
         // Original column map: A-H -> 0-7
         colMap.put(0, 'A');
@@ -38,7 +36,7 @@ public class Parser {
         rowMap.put(0, '8');
     }
 
-    public static String parseBoardToString( Board[][] board) {
+    public static String parseBoardToString(Board[][] board) {
 
 //        Black names represented by uppercase letters and
 //        White by lowercase letters
@@ -47,12 +45,12 @@ public class Parser {
         parseString.append("[ ");
         for (Board[] boards : board) {
             for (Board value : boards) {
-                if(!(value.getPiece() instanceof Empty)){
+                if (!(value.getPiece() instanceof Empty)) {
                     String name;
                     String position;
-                    if(value.getPiece().getColor().equals(Color.BLACK)){
-                        name =  value.getPiece().getName().toUpperCase();
-                    }else{
+                    if (value.getPiece().getColor().equals(Color.BLACK)) {
+                        name = value.getPiece().getName().toUpperCase();
+                    } else {
                         name = value.getPiece().getName().toLowerCase();
                     }
                     position = getPosition(value.getPiece().getX(), value.getPiece().getY());
@@ -62,16 +60,13 @@ public class Parser {
             }
         }
         parseString.append(" ]");
-        parseString.replace(parseString.toString().length()-3,parseString.toString().length()-2,"");
+        parseString.replace(parseString.toString().length() - 3, parseString.toString().length() - 2, "");
         return parseString.toString();
-
-
-
 
 
     }
 
-    private  static  String getPosition(int x, int y){
-        return  colMap.get(y)+"" + rowMap.get(x);
+    private static String getPosition(int x, int y) {
+        return colMap.get(y) + "" + rowMap.get(x);
     }
 }

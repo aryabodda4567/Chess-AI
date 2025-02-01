@@ -5,7 +5,10 @@ import com.chess.ai.utils.Parser;
 import com.chess.models.Board;
 import com.chess.models.Color;
 import com.chess.models.GameOption;
-import com.chess.util.*;
+import com.chess.util.BoardUtil;
+import com.chess.util.Message;
+import com.chess.util.MoveUtil;
+import com.chess.util.Utils;
 
 import java.util.Scanner;
 
@@ -16,9 +19,6 @@ public class Main {
     static Board[][] board = new Board[8][8];
     static Color currentColor = Color.WHITE;
     static int moveCounter = 0;
-
-
-
 
 
     public static void main(String[] args) {
@@ -32,39 +32,41 @@ public class Main {
 
         while (true) {
             System.out.print("Place " + currentColor + " Move. ");
-            String move =  Chat.getMove(Parser.parseBoardToString(board),currentColor.toString());
+
+            String move = Chat.getMove(Parser.parseBoardToString(board),
+                    currentColor.toString());
+
             System.out.println(move);
 //            String move = scanner.nextLine();
 
 
 //            Check move contains game option;
-
             assert move != null;
-            if(MoveUtil.isGameOptions(move)) {
+            if (MoveUtil.isGameOptions(move)) {
 //                Get the game options
                 GameOption gameOption = GameOption.getGameOption(move);
 
-                if(gameOption != null) {
-                     if(gameOption.equals(GameOption.EXIT)){
-                         System.out.println("Exiting...");
-                         break;
-                     }else if (gameOption.equals(GameOption.DRAW)){
-                         System.out.println("Draw...");
-                         break;
-                     }else if (gameOption.equals(GameOption.LOSE)){
-                         System.out.println("Lose...");
-                         break;
-                     } else if (gameOption.equals(GameOption.CHECKMATE)) {
-                         System.out.println("Checkmate...");
-                         break;
-                     } else if (gameOption.equals(GameOption.CHECK)) {
-                         System.out.println("Check...");
-                         move = move.toUpperCase();
-                         move= move.replace(GameOption.CHECK.toString(), "" );
-                     }
+                if (gameOption != null) {
+                    if (gameOption.equals(GameOption.EXIT)) {
+                        System.out.println("Exiting...");
+                        break;
+                    } else if (gameOption.equals(GameOption.DRAW)) {
+                        System.out.println("Draw...");
+                        break;
+                    } else if (gameOption.equals(GameOption.LOSE)) {
+                        System.out.println("Lose...");
+                        break;
+                    } else if (gameOption.equals(GameOption.CHECKMATE)) {
+                        System.out.println("Checkmate...");
+                        break;
+                    } else if (gameOption.equals(GameOption.CHECK)) {
+                        System.out.println("Check...");
+                        move = move.toUpperCase();
+                        move = move.replace(GameOption.CHECK.toString(), "");
+                    }
                 }
             }
-            Message message = Utils.validateMove(move,board,currentColor);
+            Message message = Utils.validateMove(move, board, currentColor);
 //          Check move errors
             if (message.isError()) {
                 System.out.println(message.getMessage());
@@ -80,12 +82,6 @@ public class Main {
 
 
     }
-
-
-
-
-
-
 
 
 }

@@ -1,6 +1,9 @@
 package com.chess.util;
 
-import com.chess.models.*;
+import com.chess.models.Board;
+import com.chess.models.Color;
+import com.chess.models.Location;
+import com.chess.models.Piece;
 import com.chess.piece.Empty;
 
 import java.util.Set;
@@ -8,7 +11,6 @@ import java.util.Set;
 import static com.chess.util.BoardUtil.setPiece;
 
 public class Utils {
-
 
 
     public static void clearScreen() {
@@ -25,6 +27,7 @@ public class Utils {
         System.out.println("Draw game.");
 
     }
+
     public static void checkmate() {
         System.out.println("Check mate.");
     }
@@ -48,16 +51,6 @@ public class Utils {
         return false;
     }
 
-    public void displayInstructions() {
-        System.out.println("1: Each cell contains the name and color of the piece.");
-        System.out.println("2: Empty cells do not contain any pieces.");
-        System.out.println("3: To move a piece, enter the source location and the destination location.");
-        System.out.println("   - Format: For example, 'c1 c5' means moving the piece from c1 to c5.");
-        System.out.println("4: To declare a draw, type 'DRAW'.");
-        System.out.println("5: To exit the game, type 'EXIT'.");
-
-    }
-
     public static void init(Board[][] board) {
         // Assign white
         for (int i = 0; i < 2; i++) {
@@ -78,12 +71,12 @@ public class Utils {
             }
         }
     }
+
     ///     Method handles all error and return error object
     public static Message validateMove(String move, Board[][] board, Color currentColor) {
 
 //        Validate
-        if(move.trim().isEmpty()) return  new Message(true,"No move entered.");
-
+        if (move.trim().isEmpty()) return new Message(true, "No move entered.");
 
 
 //        Get locations from user moves
@@ -121,16 +114,24 @@ public class Utils {
 //             return new ErrorMessage(false,null);
     }
 
-///  Toggle the color
+    ///  Toggle the color
     public static Color updateMove(Color currentColor) {
 //    Toggle color
         if (currentColor == Color.BLACK) {
             return Color.WHITE;
         } else {
-           return Color.BLACK;
+            return Color.BLACK;
         }
 
     }
 
+    public void displayInstructions() {
+        System.out.println("1: Each cell contains the name and color of the piece.");
+        System.out.println("2: Empty cells do not contain any pieces.");
+        System.out.println("3: To move a piece, enter the source location and the destination location.");
+        System.out.println("   - Format: For example, 'c1 c5' means moving the piece from c1 to c5.");
+        System.out.println("4: To declare a draw, type 'DRAW'.");
+        System.out.println("5: To exit the game, type 'EXIT'.");
 
+    }
 }

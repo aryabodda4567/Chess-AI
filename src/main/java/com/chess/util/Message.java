@@ -13,10 +13,9 @@ public class Message {
         this.message = message;
     }
 
-     public Message(GameOption gameOption) {
+    public Message(GameOption gameOption) {
         this.gameOption = gameOption;
-     }
-
+    }
 
 
     public String getMessage() {
