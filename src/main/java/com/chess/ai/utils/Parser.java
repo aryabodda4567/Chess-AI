@@ -38,7 +38,7 @@ public class Parser {
         rowMap.put(0, '8');
     }
 
-    public static void parseBoardToString( Board[][] board) {
+    public static String parseBoardToString( Board[][] board) {
 
 //        Black names represented by uppercase letters and
 //        White by lowercase letters
@@ -63,7 +63,7 @@ public class Parser {
         }
         parseString.append(" ]");
         parseString.replace(parseString.toString().length()-3,parseString.toString().length()-2,"");
-        System.out.println(parseString.toString());
+        return parseString.toString();
 
 
 
