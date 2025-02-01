@@ -1,5 +1,6 @@
 package com.chess;
 
+import com.chess.ai.utils.Parser;
 import com.chess.models.Board;
 import com.chess.models.Color;
 import com.chess.util.*;
@@ -21,8 +22,10 @@ public class Main {
     public static void main(String[] args) {
 
 
+
         Scanner scanner = new Scanner(System.in);
         Utils.init(board);
+        Parser.parseBoardToString(board);
         BoardUtil.printBoard(board);
         Message message;
         String move;
@@ -39,7 +42,6 @@ public class Main {
 //          Check move errors
             if (message.isError()) {
                 System.out.println(message.getMessage());
-
             } else {
                 currentColor = Utils.updateMove(currentColor);
                 moveCounter++;
