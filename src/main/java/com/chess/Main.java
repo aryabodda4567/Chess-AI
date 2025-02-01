@@ -23,65 +23,67 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-        Scanner scanner = new Scanner(System.in);
-        Utils.init(board);
+        try {
+            Scanner scanner = new Scanner(System.in);
+            Utils.init(board);
 //        System.out.println(Chat.getMove(Parser.parseBoardToString(board),currentColor.toString()));
-        BoardUtil.printBoard(board);
+            BoardUtil.printBoard(board);
 
 
-        while (true) {
-            System.out.print("Place " + currentColor + " Move. ");
+            while (true) {
+                System.out.print("Place " + currentColor + " Move. ");
 
-            String move = Chat.getMove(Parser.parseBoardToString(board),
-                    currentColor.toString());
+                String move = Chat.getMove(Parser.parseBoardToString(board),
+                        currentColor.toString());
 
-            System.out.println(move);
+                System.out.println(move);
 //            String move = scanner.nextLine();
 
 
 //            Check move contains game option;
-            assert move != null;
-            if (MoveUtil.isGameOptions(move)) {
+                assert move != null;
+                if (MoveUtil.isGameOptions(move)) {
 //                Get the game options
-                GameOption gameOption = GameOption.getGameOption(move);
+                    GameOption gameOption = GameOption.getGameOption(move);
 
-                if (gameOption != null) {
-                    if (gameOption.equals(GameOption.EXIT)) {
-                        System.out.println("Exiting...");
-                        break;
-                    } else if (gameOption.equals(GameOption.DRAW)) {
-                        System.out.println("Draw...");
-                        break;
-                    } else if (gameOption.equals(GameOption.LOSE)) {
-                        System.out.println("Lose...");
-                        break;
-                    } else if (gameOption.equals(GameOption.CHECKMATE)) {
-                        System.out.println("Checkmate...");
-                        break;
-                    } else if (gameOption.equals(GameOption.CHECK)) {
-                        System.out.println("Check...");
-                        move = move.toUpperCase();
-                        move = move.replace(GameOption.CHECK.toString(), "");
+                    if (gameOption != null) {
+                        if (gameOption.equals(GameOption.EXIT)) {
+                            System.out.println("Exiting...");
+                            break;
+                        } else if (gameOption.equals(GameOption.DRAW)) {
+                            System.out.println("Draw...");
+                            break;
+                        } else if (gameOption.equals(GameOption.LOSE)) {
+                            System.out.println("Lose...");
+                            break;
+                        } else if (gameOption.equals(GameOption.CHECKMATE)) {
+                            System.out.println("Checkmate...");
+                            break;
+                        } else if (gameOption.equals(GameOption.CHECK)) {
+                            System.out.println("Check...");
+                            move = move.toUpperCase();
+                            move = move.replace(GameOption.CHECK.toString(), "");
+                        }
                     }
                 }
-            }
-            Message message = Utils.validateMove(move, board, currentColor);
+                Message message = Utils.validateMove(move, board, currentColor);
 //          Check move errors
-            if (message.isError()) {
-                System.out.println(message.getMessage());
-            } else {
-                currentColor = Utils.updateMove(currentColor);
-                moveCounter++;
+                if (message.isError()) {
+                    System.out.println(message.getMessage());
+                } else {
+                    currentColor = Utils.updateMove(currentColor);
+                    moveCounter++;
+
+                }
+                BoardUtil.printBoard(board);
+
 
             }
-            BoardUtil.printBoard(board);
 
 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
 
-
     }
-
-
 }
