@@ -1,5 +1,6 @@
 package com.chess.util;
 
+import com.chess.models.Board;
 import com.chess.models.GameOption;
 import com.chess.models.Location;
 
@@ -7,18 +8,7 @@ import java.util.Set;
 
 public class Utils {
 
-    public static GameOption validateString(String gameOption) {
 
-        if (gameOption == null || gameOption.isEmpty()) {
-            return null;
-        }
-        return switch (gameOption) {
-            case "START" -> GameOption.START;
-            case "EXIT" -> GameOption.EXIT;
-            case "DRAW" -> GameOption.DRAW;
-            default -> GameOption.MOVE;
-        };
-    }
 
     public static void clearScreen() {
         for (int i = 0; i < 100; i++) // Default Height of cmd is 300 and Default width is 80
@@ -26,13 +16,20 @@ public class Utils {
     }
 
     public static void exitGame() {
-        System.out.println("Game over.");
+        System.out.println("Game exited.");
 
     }
 
     public static void drawGame() {
         System.out.println("Draw game.");
 
+    }
+    public static void checkmate() {
+        System.out.println("Check mate.");
+    }
+
+    public static void check() {
+        System.out.println("Check.");
     }
 
     public static void printInvalidMove(String message) {

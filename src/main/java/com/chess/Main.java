@@ -10,6 +10,7 @@ import com.chess.util.ErrorMessage;
 import com.chess.util.MoveUtil;
 import com.chess.util.PieceUtil;
 
+import javax.lang.model.type.UnionType;
 import java.util.Scanner;
 
 import static com.chess.util.BoardUtil.setPiece;
@@ -72,6 +73,11 @@ public class Main {
 
     ///     Method handles all error and return error object
     private static ErrorMessage validateMove(String move) {
+
+//        Check the move is game option
+        if(MoveUtil.isGameOptions(move)){
+            System.exit(0);
+        }
 
 //        Get locations from user moves
         Location[] locations = MoveUtil.parseMove(move);

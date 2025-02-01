@@ -1,6 +1,7 @@
 package com.chess.util;
 
 import com.chess.models.Board;
+import com.chess.models.GameOption;
 import com.chess.models.Location;
 import com.chess.models.Piece;
 
@@ -81,6 +82,34 @@ public class MoveUtil {
 
         return true;
 
+
+    }
+
+    /// Return true for exit
+    public static boolean isGameOptions(String move) {
+        move=move.toUpperCase();
+        if(move.equals(GameOption.EXIT.toString())){
+                Utils.exitGame();
+                return true;
+        }
+        if(move.equals(GameOption.DRAW.toString())){
+            Utils.drawGame();
+            return true;
+        }
+        if(move.equals(GameOption.LOSE.toString()) ){
+            Utils.exitGame();
+            return true;
+        }
+        if(move.equals(GameOption.CHECK.toString())){
+            Utils.check();
+            return false;
+        }
+        if(move.equals(GameOption.CHECKMATE.toString())){
+            Utils.checkmate();
+            return true;
+        }
+
+        return false;
 
     }
 

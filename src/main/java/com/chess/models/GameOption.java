@@ -4,10 +4,8 @@ public enum GameOption {
     EXIT,
     START,
     DRAW,
+    WIN,
     LOSE,
-    VALID_MOVE,
-    INVALID_MOVE,
-    BLACK_WIN,
-    WHITE_WIN,
-    MOVE
+    CHECK,
+    CHECKMATE
 }
