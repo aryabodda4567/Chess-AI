@@ -1,6 +1,6 @@
 package com.chess.util;
 
-import com.chess.models.Board;
+import com.chess.models.Square;
 import com.chess.models.Color;
 import com.chess.models.Location;
 import com.chess.models.Piece;
@@ -51,29 +51,29 @@ public class Utils {
         return false;
     }
 
-    public static void init(Board[][] board) {
+    public static void init(Square[][] board) {
         // Assign white
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 8; j++) {
-                board[i][j] = new Board(i, j, setPiece(i, j));
+                board[i][j] = new Square(i, j, setPiece(i, j));
             }
         }
         // Assign Black
         for (int i = 7; i >= 6; i--) {
             for (int j = 0; j < 8; j++) {
-                board[i][j] = new Board(i, j, setPiece(i, j));
+                board[i][j] = new Square(i, j, setPiece(i, j));
             }
         }
         // Assign Empty
         for (int i = 2; i < 6; i++) {
             for (int j = 0; j < 8; j++) {
-                board[i][j] = new Board(i, j, new Empty(i, j));
+                board[i][j] = new Square(i, j, new Empty(i, j));
             }
         }
     }
 
     ///     Method handles all error and return error object
-    public static Message validateMove(String move, Board[][] board, Color currentColor) {
+    public static Message validateMove(String move, Square[][] board, Color currentColor) {
 
 //        Validate
         if (move.trim().isEmpty()) return new Message(true, "No move entered.");
@@ -87,7 +87,7 @@ public class Utils {
 
 
 //            Check if the source or destination is empty
-        if (Board.isEmpty(locations[0], board)) {
+        if (Square.isEmpty(locations[0], board)) {
             return new Message(true, "Empty source or destination locations ");
         }
 

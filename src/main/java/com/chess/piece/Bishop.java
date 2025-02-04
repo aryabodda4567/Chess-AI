@@ -27,7 +27,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public Message move(Board[][] board, Piece destination) {
+    public Message move(Square[][] board, Piece destination) {
         Set<Location> possibleLocations = new HashSet<>();
         int X = this.getX();
         int Y = this.getY();

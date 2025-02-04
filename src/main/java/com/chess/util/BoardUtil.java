@@ -1,9 +1,11 @@
 package com.chess.util;
 
-import com.chess.models.Board;
+import com.chess.models.Square;
 import com.chess.models.Location;
 import com.chess.models.Piece;
 import com.chess.piece.*;
+
+import javax.swing.*;
 
 
 public class BoardUtil {
@@ -27,7 +29,7 @@ public class BoardUtil {
     }
 
 
-    public static void printBoard(Board[][] board) {
+    public static void printBoard(Square[][] board) {
         int size = 15;
         int rows = 8;
         char[] cols = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
@@ -66,18 +68,25 @@ public class BoardUtil {
     }
 
 
-    public static void setPieces(Piece source, Piece destination, Board[][] board) {
+    public static void setPieces(Piece source, Piece destination, Square[][] board) {
         int curX = source.getCurrentLocation().getX();
         int curY = source.getCurrentLocation().getY();
 
+
+
 //           Remove current piece  from the source location
         board[curX][curY].setPiece(new Empty(curX, curY));
+        board[curX][curY].getSquareButton().setText("");
+
 
         int destX = destination.getCurrentLocation().getX();
         int destY = destination.getCurrentLocation().getY();
 
+
+
 //        Set source piece at destination location
         source.setCurrentLocation(destination.getCurrentLocation());
+        board[destX][destY].getSquareButton().setText(source.getName());
         board[destX][destY].setPiece(source);
     }
 

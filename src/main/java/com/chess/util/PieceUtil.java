@@ -1,6 +1,6 @@
 package com.chess.util;
 
-import com.chess.models.Board;
+import com.chess.models.Square;
 import com.chess.models.Location;
 import com.chess.models.Piece;
 
@@ -10,11 +10,11 @@ public class PieceUtil {
         return piece1.getColor().equals(piece2.getColor());
     }
 
-    public static boolean isSameColorPiece(Location sourcePiece, Location destinationPiece, Board[][] board) {
+    public static boolean isSameColorPiece(Location sourcePiece, Location destinationPiece, Square[][] board) {
         return isSameColorPiece(sourcePiece.getX(), sourcePiece.getY(), destinationPiece.getX(), destinationPiece.getY(), board);
     }
 
-    public static boolean isSameColorPiece(int sourceX, int sourceY, int destX, int destY, Board[][] board) {
+    public static boolean isSameColorPiece(int sourceX, int sourceY, int destX, int destY, Square[][] board) {
 
         return board[sourceX][sourceY].getPiece().getColor().equals(
                 board[destX][destY].getPiece().getColor()

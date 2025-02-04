@@ -1,6 +1,6 @@
 package com.chess.piece;
 
-import com.chess.models.Board;
+import com.chess.models.Square;
 import com.chess.models.Color;
 import com.chess.models.Movements;
 import com.chess.models.Piece;
@@ -18,7 +18,7 @@ public class Empty extends Piece {
     }
 
     @Override
-    public Message move(Board[][] board, Piece destination) {
+    public Message move(Square[][] board, Piece destination) {
         return null;
 
     }

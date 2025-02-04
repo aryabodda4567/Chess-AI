@@ -98,6 +98,6 @@ public abstract class Piece {
         return isInitialMovement;
     }
 
-    public abstract Message move(Board[][] board, Piece destination);
+    public abstract Message move(Square[][] board, Piece destination);
 
 }

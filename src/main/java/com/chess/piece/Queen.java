@@ -26,7 +26,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    public Message move(Board[][] board, Piece destination) {
+    public Message move(Square[][] board, Piece destination) {
         Set<Location> possibleMoves = new HashSet<>();
 
         int X = getX();

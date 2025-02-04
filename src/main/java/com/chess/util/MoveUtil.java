@@ -1,6 +1,6 @@
 package com.chess.util;
 
-import com.chess.models.Board;
+import com.chess.models.Square;
 import com.chess.models.GameOption;
 import com.chess.models.Location;
 import com.chess.models.Piece;
@@ -96,10 +96,10 @@ public class MoveUtil {
 
     }
 
-    public static Set<Location> getHorizontalLeftMoves(int X, int Y, Board[][] board, Piece source) {
+    public static Set<Location> getHorizontalLeftMoves(int X, int Y, Square[][] board, Piece source) {
         Set<Location> moves = new HashSet<>();
         for (int i = Y - 1; i >= 0; i--) {
-            if (Board.isEmpty(X, i, board)) {
+            if (Square.isEmpty(X, i, board)) {
                 moves.add(new Location(X, i));
                 continue;
             }
@@ -113,10 +113,10 @@ public class MoveUtil {
         return moves;
     }
 
-    public static Set<Location> getHorizontalRightMoves(int X, int Y, Board[][] board, Piece source) {
+    public static Set<Location> getHorizontalRightMoves(int X, int Y, Square[][] board, Piece source) {
         Set<Location> moves = new HashSet<>();
         for (int i = Y + 1; i <= 7; i++) {
-            if (Board.isEmpty(X, i, board)) {
+            if (Square.isEmpty(X, i, board)) {
                 moves.add(new Location(X, i));
                 continue;
             }
@@ -130,10 +130,10 @@ public class MoveUtil {
         return moves;
     }
 
-    public static Set<Location> getVerticalTopMoves(int X, int Y, Board[][] board, Piece source) {
+    public static Set<Location> getVerticalTopMoves(int X, int Y, Square[][] board, Piece source) {
         Set<Location> moves = new HashSet<>();
         for (int i = X - 1; i >= 0; i--) {
-            if (Board.isEmpty(i, Y, board)) {
+            if (Square.isEmpty(i, Y, board)) {
                 moves.add(new Location(i, Y));
                 continue;
             }
@@ -146,10 +146,10 @@ public class MoveUtil {
         return moves;
     }
 
-    public static Set<Location> getVerticalBottomMoves(int X, int Y, Board[][] board, Piece source) {
+    public static Set<Location> getVerticalBottomMoves(int X, int Y, Square[][] board, Piece source) {
         Set<Location> moves = new HashSet<>();
         for (int i = X + 1; i <= 7; i++) {
-            if (Board.isEmpty(i, Y, board)) {
+            if (Square.isEmpty(i, Y, board)) {
                 moves.add(new Location(i, Y));
                 continue;
             }
@@ -164,14 +164,14 @@ public class MoveUtil {
     }
 
 
-    public static Set<Location> getDiagonalTopLeftMoves(int X, int Y, Board[][] board, Piece source) {
+    public static Set<Location> getDiagonalTopLeftMoves(int X, int Y, Square[][] board, Piece source) {
 //        i-1,j-1
         Set<Location> moves = new HashSet<>();
 
         X = X - 1;
         Y = Y - 1;
         while (!PieceUtil.isDiagonalEnd(X, Y)) {
-            if (Board.isEmpty(X, Y, board)) {
+            if (Square.isEmpty(X, Y, board)) {
                 moves.add(new Location(X, Y));
                 X--;
                 Y--;
@@ -195,14 +195,14 @@ public class MoveUtil {
     }
 
 
-    public static Set<Location> getDiagonalTopRightMoves(int X, int Y, Board[][] board, Piece source) {
+    public static Set<Location> getDiagonalTopRightMoves(int X, int Y, Square[][] board, Piece source) {
 //        i-1,j+1
         Set<Location> moves = new HashSet<>();
 
         X = X - 1;
         Y = Y + 1;
         while (!PieceUtil.isDiagonalEnd(X, Y)) {
-            if (Board.isEmpty(X, Y, board)) {
+            if (Square.isEmpty(X, Y, board)) {
                 moves.add(new Location(X, Y));
                 X--;
                 Y++;
@@ -221,14 +221,14 @@ public class MoveUtil {
         return moves;
     }
 
-    public static Set<Location> getDiagonalBottomLeftMoves(int X, int Y, Board[][] board, Piece source) {
+    public static Set<Location> getDiagonalBottomLeftMoves(int X, int Y, Square[][] board, Piece source) {
 //i+1,j-1
         Set<Location> moves = new HashSet<>();
 
         X = X + 1;
         Y = Y - 1;
         while (!PieceUtil.isDiagonalEnd(X, Y)) {
-            if (Board.isEmpty(X, Y, board)) {
+            if (Square.isEmpty(X, Y, board)) {
                 moves.add(new Location(X, Y));
                 X++;
                 Y--;
@@ -245,13 +245,13 @@ public class MoveUtil {
         return moves;
     }
 
-    public static Set<Location> getDiagonalBottomRightMoves(int X, int Y, Board[][] board, Piece source) {
+    public static Set<Location> getDiagonalBottomRightMoves(int X, int Y, Square[][] board, Piece source) {
 //i+1,j+1
         Set<Location> moves = new HashSet<>();
         X = X + 1;
         Y = Y + 1;
         while (!PieceUtil.isDiagonalEnd(X, Y)) {
-            if (Board.isEmpty(X, Y, board)) {
+            if (Square.isEmpty(X, Y, board)) {
                 moves.add(new Location(X, Y));
                 X++;
                 Y++;

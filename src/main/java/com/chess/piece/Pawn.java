@@ -28,7 +28,7 @@ public class Pawn extends Piece {
 
 
     @Override
-    public Message move(Board[][] board, Piece destination) {
+    public Message move(Square[][] board, Piece destination) {
         Location destLocation = destination.getCurrentLocation();
 
 
@@ -66,7 +66,7 @@ public class Pawn extends Piece {
 
     }
 
-    private void promote(Board[][] board) {
+    private void promote(Square[][] board) {
         Piece piece = getPromotedPiece();
         assert piece != null;
         BoardUtil.setPieces(piece, this, board);
@@ -86,7 +86,7 @@ public class Pawn extends Piece {
         };
     }
 
-    private Set<Location> getValidMoves(Board[][] board, int maxMoves) {
+    private Set<Location> getValidMoves(Square[][] board, int maxMoves) {
         Set<Location> possibleMoves = new HashSet<>();
 
         int change = (this.getColor().equals(Color.BLACK) ? 1 : -1);
@@ -95,19 +95,19 @@ public class Pawn extends Piece {
         int Y = this.getY();
 
 //        Straight
-        if (BoardUtil.isValidCoordinates(X, Y) && Board.isEmpty(X, Y, board)) {
+        if (BoardUtil.isValidCoordinates(X, Y) && Square.isEmpty(X, Y, board)) {
             possibleMoves.add(new Location(X, Y));
         }
 
 
 //        Left kill
-        if (BoardUtil.isValidCoordinates(X, Y - 1) && !Board.isEmpty(X, Y - 1, board)
+        if (BoardUtil.isValidCoordinates(X, Y - 1) && !Square.isEmpty(X, Y - 1, board)
                 && !PieceUtil.isSameColorPiece(getX(), getY(), X, Y - 1, board)) {
             possibleMoves.add(new Location(X, Y - 1));
         }
 
 //        Right kill
-        if (BoardUtil.isValidCoordinates(X, Y + 1) && !Board.isEmpty(X, Y + 1, board)
+        if (BoardUtil.isValidCoordinates(X, Y + 1) && !Square.isEmpty(X, Y + 1, board)
                 && !PieceUtil.isSameColorPiece(getX(), getY(), X, Y + 1, board)) {
             possibleMoves.add(new Location(X, Y + 1));
         }
@@ -119,7 +119,7 @@ public class Pawn extends Piece {
             X = this.getX() + change;
             Y = this.getY();
 
-            if (BoardUtil.isValidCoordinates(X, Y) && Board.isEmpty(X, Y, board)) {
+            if (BoardUtil.isValidCoordinates(X, Y) && Square.isEmpty(X, Y, board)) {
                 possibleMoves.add(new Location(X, Y));
             }
         }

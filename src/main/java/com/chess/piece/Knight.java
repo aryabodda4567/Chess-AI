@@ -25,7 +25,7 @@ public class Knight extends Piece {
     }
 
     @Override
-    public Message move(Board[][] board, Piece destination) {
+    public Message move(Square[][] board, Piece destination) {
         Set<Location> possibleLocations;
 
         possibleLocations = getValidMoves(board, destination);
@@ -46,7 +46,7 @@ public class Knight extends Piece {
     /// ALERT: This method only check valid positions and add all locations which can be accessed from the knight location
     /// irrespective of the piece present at square
     /// Use 'PieceUtil.isSameColorPiece()' method before calling this method
-    public Set<Location> getValidMoves(Board[][] board, Piece destination) {
+    public Set<Location> getValidMoves(Square[][] board, Piece destination) {
         Set<Location> validMoves = new HashSet<>();
 //        validMoves.add(new Location(X+i, Y+j));
 //        validMoves.add(new Location(X-i, Y-j));

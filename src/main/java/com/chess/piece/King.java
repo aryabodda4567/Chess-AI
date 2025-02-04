@@ -23,7 +23,7 @@ public class King extends Piece {
     }
 
     @Override
-    public Message move(Board[][] board, Piece destination) {
+    public Message move(Square[][] board, Piece destination) {
         Set<Location> validMoves;
         validMoves = getValidMoves(board);
 
@@ -43,7 +43,7 @@ public class King extends Piece {
 
     }
 
-    private Set<Location> getValidMoves(Board[][] board) {
+    private Set<Location> getValidMoves(Square[][] board) {
         Set<Location> validMoves = new HashSet<>();
 
         int X = getX();
@@ -55,7 +55,7 @@ public class King extends Piece {
         newX = X - 1;
         newY = Y;
         if (BoardUtil.isValidCoordinates(newX, newY)) {
-            if (Board.isEmpty(newX, newY, board)) {
+            if (Square.isEmpty(newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
             } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
@@ -66,7 +66,7 @@ public class King extends Piece {
         newX = X - 1;
         newY = Y - 1;
         if (BoardUtil.isValidCoordinates(newX, newY)) {
-            if (Board.isEmpty(newX, newY, board)) {
+            if (Square.isEmpty(newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
             } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
@@ -77,7 +77,7 @@ public class King extends Piece {
         newX = X - 1;
         newY = Y + 1;
         if (BoardUtil.isValidCoordinates(newX, newY)) {
-            if (Board.isEmpty(newX, newY, board)) {
+            if (Square.isEmpty(newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
             } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
@@ -88,7 +88,7 @@ public class King extends Piece {
         newX = X + 1;
         newY = Y;
         if (BoardUtil.isValidCoordinates(newX, newY)) {
-            if (Board.isEmpty(newX, newY, board)) {
+            if (Square.isEmpty(newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
             } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
@@ -99,7 +99,7 @@ public class King extends Piece {
         newX = X + 1;
         newY = Y + 1;
         if (BoardUtil.isValidCoordinates(newX, newY)) {
-            if (Board.isEmpty(newX, newY, board)) {
+            if (Square.isEmpty(newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
             } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
@@ -110,7 +110,7 @@ public class King extends Piece {
         newX = X + 1;
         newY = Y - 1;
         if (BoardUtil.isValidCoordinates(newX, newY)) {
-            if (Board.isEmpty(newX, newY, board)) {
+            if (Square.isEmpty(newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
             } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
@@ -121,7 +121,7 @@ public class King extends Piece {
         newX = X;
         newY = Y + 1;
         if (BoardUtil.isValidCoordinates(newX, newY)) {
-            if (Board.isEmpty(newX, newY, board)) {
+            if (Square.isEmpty(newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
             } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
@@ -131,7 +131,7 @@ public class King extends Piece {
         newX = X;
         newY = Y - 1;
         if (BoardUtil.isValidCoordinates(newX, newY)) {
-            if (Board.isEmpty(newX, newY, board)) {
+            if (Square.isEmpty(newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));
             } else if (!PieceUtil.isSameColorPiece(X, Y, newX, newY, board)) {
                 validMoves.add(new Location(newX, newY));

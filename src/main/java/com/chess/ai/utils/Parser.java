@@ -1,6 +1,6 @@
 package com.chess.ai.utils;
 
-import com.chess.models.Board;
+import com.chess.models.Square;
 import com.chess.models.Color;
 import com.chess.piece.Empty;
 
@@ -36,15 +36,15 @@ public class Parser {
         rowMap.put(0, '8');
     }
 
-    public static String parseBoardToString(Board[][] board) {
+    public static String parseBoardToString(Square[][] board) {
 
 //        Black names represented by uppercase letters and
 //        White by lowercase letters
 
         StringBuilder parseString = new StringBuilder();
         parseString.append("[ ");
-        for (Board[] boards : board) {
-            for (Board value : boards) {
+        for (Square[] boards : board) {
+            for (Square value : boards) {
                 if (!(value.getPiece() instanceof Empty)) {
                     String name;
                     String position;
@@ -66,7 +66,7 @@ public class Parser {
 
     }
 
-    private static String getPosition(int x, int y) {
+    public static String getPosition(int x, int y) {
         return colMap.get(y) + "" + rowMap.get(x);
     }
 }
