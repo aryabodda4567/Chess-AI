@@ -1,11 +1,14 @@
 package com.chess.util;
 
-import com.chess.models.Square;
+import com.chess.models.Color;
 import com.chess.models.Location;
 import com.chess.models.Piece;
+import com.chess.models.Square;
 import com.chess.piece.*;
 
 import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
 
 
 public class BoardUtil {
@@ -71,23 +74,95 @@ public class BoardUtil {
     public static void setPieces(Piece source, Piece destination, Square[][] board) {
         int curX = source.getCurrentLocation().getX();
         int curY = source.getCurrentLocation().getY();
-
-
+        Icon curIcon = board[curX][curY].getIcon();
 
 //           Remove current piece  from the source location
         board[curX][curY].setPiece(new Empty(curX, curY));
-        board[curX][curY].getSquareButton().setText("");
-
+        board[curX][curY].setIcon(null);
+        board[curX][curY].getSquareButton().setIcon(null);
 
         int destX = destination.getCurrentLocation().getX();
         int destY = destination.getCurrentLocation().getY();
 
-
-
 //        Set source piece at destination location
         source.setCurrentLocation(destination.getCurrentLocation());
-        board[destX][destY].getSquareButton().setText(source.getName());
         board[destX][destY].setPiece(source);
+        board[destX][destY].setIcon(curIcon);
+        board[destX][destY].getSquareButton().setIcon(curIcon);
+
+
+    }
+
+    public  static  void setPiece(Piece promotionPiece , Square[][] board,int x, int y) {
+
+        JButton newButton = board[x][y].getSquareButton();
+        ImageIcon resizedIcon = null;
+
+        String url ="/"+ promotionPiece.getColor().toString() +"_"+promotionPiece.getName().toUpperCase() +".png";
+        URL resource = Utils.class.getResource(url);
+        if (resource == null) {
+            System.out.println("Resource not found");
+            System.exit(1);
+        }else{
+            ImageIcon originalIcon = new ImageIcon(resource);
+            // Resize the image to match the button size
+            Image img = originalIcon.getImage();
+            Image resizedImg = img.getScaledInstance(60,
+                     60, Image.SCALE_SMOOTH);
+            resizedIcon  = new ImageIcon(resizedImg);
+        }
+
+
+        board[x][y].setPiece(promotionPiece);
+//        Set Icon
+        board[x][y].setIcon(resizedIcon);
+
+//        Update button icon;
+        board[x][y].getSquareButton().setIcon(resizedIcon);
+        newButton.setIcon(resizedIcon);
+        board[x][y].setSquareButton(newButton);
+
+    }
+
+
+    public static  boolean isBlackKingExist( Square[][] board) {
+      for (int i = 0; i < 8; i++) {
+          for (int j = 0; j < 8; j++) {
+              if(board[i][j].getPiece().getColor().equals(Color.BLACK)
+                && board[i][j].getPiece() instanceof King) {
+                  return true;
+              }
+          }
+      }
+      return false;
+    }
+
+    public static  boolean isWhiteKingExist( Square[][] board) {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(board[i][j].getPiece().getColor().equals(Color.WHITE) && board[i][j].getPiece() instanceof King) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

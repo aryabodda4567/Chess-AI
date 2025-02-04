@@ -1,7 +1,10 @@
 package com.chess.ui;
 
+import com.chess.util.Utils;
+
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 public class UiUtil {
     public static void showMessage(String message) {
@@ -40,4 +43,30 @@ public class UiUtil {
         timer.start();
     }
 
+
+    public static String showPromotionDialog(com.chess.models.Color color) {
+        String[] options = {"Queen", "Rook", "Bishop", "Knight"};
+        JPanel panel = new JPanel();
+        panel.add(new JLabel("Promote your pawn to:"));
+        // Create radio buttons
+        ButtonGroup group = new ButtonGroup();
+        JRadioButton[] radioButtons = new JRadioButton[options.length];
+        for (int i = 0; i < options.length; i++) {
+            radioButtons[i] = new JRadioButton(options[i], i == 0); // Default to Queen
+            group.add(radioButtons[i]);
+            panel.add(radioButtons[i]);
+        }
+
+        int result = JOptionPane.showConfirmDialog(null, panel,
+                "Pawn Promotion", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+        if (result == JOptionPane.OK_OPTION) {
+            for (JRadioButton radioButton : radioButtons) {
+                if (radioButton.isSelected()) {
+                    return radioButton.getText();
+                }
+            }
+        }
+        return null; // If canceled
+    }
 }

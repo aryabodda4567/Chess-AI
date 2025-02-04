@@ -11,6 +11,7 @@ import com.chess.util.Message;
 import com.chess.util.MoveUtil;
 import com.chess.util.Utils;
 
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Main {
@@ -24,19 +25,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-        try {
-            Scanner scanner = new Scanner(System.in);
+//        try {
+//            Scanner scanner = new Scanner(System.in);
             Utils.init(board);
             BoardUI boardUI = new BoardUI(board);
             boardUI.addToUI();
             boardUI.displayBoard();
 
 
-
-//        System.out.println(Chat.getMove(Parser.parseBoardToString(board),currentColor.toString()));
-            BoardUtil.printBoard(board);
 //
 //
+//////        System.out.println(Chat.getMove(Parser.parseBoardToString(board),currentColor.toString()));
+////            BoardUtil.printBoard(board);
+////
+////
 //            while (true) {
 //                System.out.print("Place " + currentColor + " Move. ");
 //
@@ -44,8 +46,8 @@ public class Main {
 //                        currentColor.toString());
 //
 //                System.out.println(move);
-////            String move = scanner.nextLine();
-//
+//////            String move = scanner.nextLine();
+////
 //
 ////            Check move contains game option;
 //                assert move != null;
@@ -56,17 +58,22 @@ public class Main {
 //                    if (gameOption != null) {
 //                        if (gameOption.equals(GameOption.EXIT)) {
 //                            System.out.println("Exiting...");
+//                            JOptionPane.showMessageDialog(null, "Exiting...");
 //                            break;
 //                        } else if (gameOption.equals(GameOption.DRAW)) {
+//                            JOptionPane.showMessageDialog(null, "Draw...");
 //                            System.out.println("Draw...");
 //                            break;
 //                        } else if (gameOption.equals(GameOption.LOSE)) {
+//                            JOptionPane.showMessageDialog(null, "Lose...");
 //                            System.out.println("Lose...");
 //                            break;
 //                        } else if (gameOption.equals(GameOption.CHECKMATE)) {
+//                            JOptionPane.showMessageDialog(null, "Checkmate...");
 //                            System.out.println("Checkmate...");
 //                            break;
 //                        } else if (gameOption.equals(GameOption.CHECK)) {
+//                            JOptionPane.showMessageDialog(null, "Check...");
 //                            System.out.println("Check...");
 //                            move = move.toUpperCase();
 //                            move = move.replace(GameOption.CHECK.toString(), "");
@@ -84,13 +91,15 @@ public class Main {
 //                }
 //                BoardUtil.printBoard(board);
 //
-
+//
 //            }
-
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+//            System.exit(0);
+//
+//
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//            System.exit(0);
+//        }
 
     }
 }

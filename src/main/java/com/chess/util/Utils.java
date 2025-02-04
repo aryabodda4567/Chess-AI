@@ -6,6 +6,8 @@ import com.chess.models.Location;
 import com.chess.models.Piece;
 import com.chess.piece.Empty;
 
+import javax.swing.*;
+import java.util.Objects;
 import java.util.Set;
 
 import static com.chess.util.BoardUtil.setPiece;
@@ -56,12 +58,14 @@ public class Utils {
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 8; j++) {
                 board[i][j] = new Square(i, j, setPiece(i, j));
+
             }
         }
         // Assign Black
         for (int i = 7; i >= 6; i--) {
             for (int j = 0; j < 8; j++) {
                 board[i][j] = new Square(i, j, setPiece(i, j));
+
             }
         }
         // Assign Empty

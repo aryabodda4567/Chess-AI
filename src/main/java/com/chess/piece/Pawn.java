@@ -1,14 +1,13 @@
 package com.chess.piece;
 
 import com.chess.models.*;
+import com.chess.ui.UiUtil;
 import com.chess.util.BoardUtil;
 import com.chess.util.Message;
 import com.chess.util.PieceUtil;
 import com.chess.util.Utils;
 
-import java.util.HashSet;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 
 public class Pawn extends Piece {
@@ -69,14 +68,27 @@ public class Pawn extends Piece {
     private void promote(Square[][] board) {
         Piece piece = getPromotedPiece();
         assert piece != null;
-        BoardUtil.setPieces(piece, this, board);
+//        BoardUtil.setPieces(piece, this, board);
+        BoardUtil.setPiece(piece,board,getX(),getY());
     }
 
     private Piece getPromotedPiece() {
+        Map<String,Integer> options = new HashMap<>();
+
+        options.put("Queen", 1);
+        options.put("Knight", 2);
+        options.put("Bishop", 3);
+        options.put("Rook", 4);
+
+
+
         Scanner scanner = new Scanner(System.in);
         System.out.println("Pawn promotion");
         System.out.println("1: Queen\n2: Knight\n3: Bishop\n4: Rook");
-        int option = scanner.nextInt();
+        String input = UiUtil.showPromotionDialog(getColor());
+        System.out.println(input);
+        int option = options.get( input);
+        System.out.println(option);
         return switch (option) {
             case 1 -> new Queen(this.getX(), this.getY(), this.getColor());
             case 2 -> new Knight(this.getX(), this.getY(), this.getColor());

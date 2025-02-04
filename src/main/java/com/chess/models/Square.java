@@ -11,6 +11,9 @@ public class Square {
     JButton squareButton;
     Location location;
     Piece piece;
+    Icon icon = new ImageIcon("/WHITE_KING.png");
+
+
     public Color currentColor = Color.WHITE;
 
     public Square(int x, int y, Piece piece) {
@@ -48,5 +51,11 @@ public class Square {
 
     public void setSquareButton(JButton squareButton) {
         this.squareButton = squareButton;
+    }
+    public Icon getIcon() {
+        return icon;
+    }
+    public void setIcon(Icon icon) {
+        this.icon = icon;
     }
 }
